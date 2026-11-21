@@ -2305,9 +2305,7 @@ class TestDocumentationAndManifestIntegrity(unittest.TestCase):
             cfg_path.write_text((REPO / "user_configuration.json").read_text(encoding="utf-8"), encoding="utf-8")
             cfg_sha = hashlib.sha256(cfg_path.read_bytes()).hexdigest()
             manifest = json.loads((REPO / "manifests/release.json").read_text(encoding="utf-8"))
-            payload_tar = REPO / f"dist/nox-archinstall-payload-{manifest['version']}.tar.gz"
-            if not payload_tar.is_file():
-                subprocess.run(["bash", str(REPO / "scripts/build-release.sh"), "--skip-git-match"], cwd=REPO, check=True)
+            payload_name = f"nox-archinstall-payload-{manifest['version']}.tar.gz"
             payload_sha = manifest["payload_sha256"]
 
             fake_disk = {
@@ -2345,7 +2343,7 @@ class TestDocumentationAndManifestIntegrity(unittest.TestCase):
                         "--config-sha256",
                         cfg_sha,
                         "--payload-url",
-                        f"https://example.invalid/{payload_tar.name}",
+                        f"https://example.invalid/{payload_name}",
                         "--payload-sha256",
                         payload_sha,
                         "--skip-net-check",
