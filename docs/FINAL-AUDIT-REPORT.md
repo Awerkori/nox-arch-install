@@ -4,15 +4,15 @@
 > - Pré-release [`v1.0.0-rc10`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0-rc10): preservada integralmente em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md`](history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md).
 > - Release estável publicada [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0): documentada em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0.md`](history/FINAL-AUDIT-REPORT-v1.0.0.md) (artefatos, tag e commit `73c21a171e4c672662feb35756dd7c46e54036c2` preservados sem alteração retroativa).
 > - Release estável publicada vigente (`Latest` / Imutável): [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) ([PR #1](https://github.com/Awerkori/nox-arch-install/pull/1), commit `efc8e9018a2c4bf15ff3493af1f36d0b7eddc84a`, payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`).
-> - Revisão em preparação (`v1.0.2` — Em Revisão): adiciona `discord-game-presence` (`0.2-1`, AUR), serviço `--user` por usuário humano e suporte AUR a `checkdepends` + `validpgpkeys` isolados, com evidências em [`docs/evidence/v1.0.2/`](evidence/v1.0.2/MANIFEST.sha256) e [`docs/RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md).
+> - Revisão atual publicada (`Latest` / Imutável): [`v1.0.2`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2) ([PR #3](https://github.com/Awerkori/nox-arch-install/pull/3), commit `badeda3120d107c0a43deab53c25c808cd38f1f5`) — integra `discord-game-presence` (`0.2-1`, AUR), serviço `--user` por usuário humano e suporte AUR a `checkdepends` + `validpgpkeys` isolados, com evidências em [`docs/evidence/v1.0.2/`](evidence/v1.0.2/MANIFEST.sha256) e [`docs/RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md).
 
 ---
 
-## 1. Identificação da Revisão Congelada Atual (`v1.0.2` em Revisão; `v1.0.1` segue `Latest`)
+## 1. Identificação da Revisão Analisada (`v1.0.2` — Publicada em `main` como `Latest`)
 
 - **Projeto:** Nox Archinstall / Project Nox (`https://github.com/Awerkori/nox-arch-install`)
-- **Versão vigente publicada (`Latest`):** `v1.0.1` (`immutable: true`)
-- **Versão preparada em `manifests/release.json`:** `v1.0.2` (aguardando aprovação para merge e publicação)
+- **Versão vigente publicada (`Latest`):** `v1.0.2` (`immutable: true`)
+- **Integração:** [PR #3](https://github.com/Awerkori/nox-arch-install/pull/3) (`feat/discord-game-presence-v1.0.2` integrado em `main` no commit `badeda3120d107c0a43deab53c25c808cd38f1f5`)
 - **ISO oficial homologada:** `archlinux-2026.11.01-x86_64.iso` (`SHA-256: 01bcdcf01af2f7d58f2794899c834770d25c9bfc945bd092b32bb66672a4a216`, `archinstall 4.5`)
 - **Manifesto de integridade:** [`manifests/release.json`](../manifests/release.json) (schema v2)
 - **Evidências públicas sanitizadas:** [`docs/evidence/v1.0.1/`](evidence/v1.0.1/MANIFEST.sha256) e [`docs/evidence/v1.0.2/`](evidence/v1.0.2/MANIFEST.sha256)

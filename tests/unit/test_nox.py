@@ -2848,20 +2848,21 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         comp_doc = (REPO / "docs/INSTALLED-COMPONENTS.md").read_text(encoding="utf-8")
         rel_manifest = json.loads((REPO / "manifests/release.json").read_text(encoding="utf-8"))
 
-        # README must expose only ONE bash install block, targeting published Latest (v1.0.1 until v1.0.2 is published) on Awerkori/nox-arch-install
+        # README must expose only ONE bash install block, targeting published Latest (v1.0.2) on Awerkori/nox-arch-install
         bash_blocks = re.findall(r"```bash\n(.*?)```", readme, flags=re.S)
         self.assertEqual(len(bash_blocks), 1, "README.md must contain exactly ONE primary live bash install block")
         cmd = bash_blocks[0]
-        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-install.py", cmd)
-        self.assertIn(self.V101_FROZEN["nox-install.py"], cmd)
-        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/user_configuration.json", cmd)
-        self.assertIn(self.V101_FROZEN["user_configuration.json"], cmd)
+        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-install.py", cmd)
+        self.assertIn(rel_manifest["bootstrap_sha256"], cmd)
+        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/user_configuration.json", cmd)
+        self.assertIn(rel_manifest["config_sha256"], cmd)
         self.assertIn("mktemp -d", cmd)
         self.assertIn("trap ", cmd)
         self.assertIn("umask 022", cmd)
         self.assertNotIn("/tmp/nox-install.py", cmd)
         self.assertNotIn("/tmp/nox-cfg.json", cmd)
         self.assertNotIn("releases/download/v1.0.0", cmd)
+        self.assertNotIn("releases/download/v1.0.1", cmd)
         self.assertNotIn("Awerkori/arch-install", cmd)
         self.assertNotIn("/refs/heads/main", cmd)
         self.assertNotIn("/main/", cmd)
@@ -2876,15 +2877,21 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         self.assertNotIn("rollback automático", readme.lower())
         self.assertIn("mktemp -d", install_doc)
 
-        # Must advertise published v1.0.1 as Latest while preserving v1.0.0 history and documenting v1.0.2
+        # Must advertise published v1.0.2 as Latest while preserving v1.0.1/v1.0.0 history
+        self.assertIn("v1.0.2", readme)
         self.assertIn("v1.0.1", readme)
         self.assertIn("v1.0.0", readme)
-        self.assertIn("v1.0.2", readme)
         self.assertIn("discord-game-presence", readme)
+        self.assertNotIn("em preparação", readme.lower())
         self.assertNotIn("Awerkori/arch-install", install_doc)
         self.assertNotIn("Awerkori/arch-install", comp_doc)
 
-        # INSTALLATION.md must carry v1.0.1 active hashes + v1.0.0 frozen reference
+        # INSTALLATION.md must carry v1.0.2 primary hashes & URLs plus v1.0.1 and v1.0.0 historical references
+        self.assertIn(rel_manifest["bootstrap_sha256"], install_doc)
+        self.assertIn(rel_manifest["config_sha256"], install_doc)
+        self.assertIn(rel_manifest["payload_sha256"], install_doc)
+        self.assertIn("releases/download/v1.0.2/nox-install.py", install_doc)
+        self.assertIn("releases/download/v1.0.2/user_configuration.json", install_doc)
         self.assertIn(self.V101_FROZEN["nox-install.py"], install_doc)
         self.assertIn(self.V101_FROZEN["user_configuration.json"], install_doc)
         self.assertIn(self.V101_FROZEN["payload"], install_doc)
@@ -2906,6 +2913,7 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         self.assertIn(rel_manifest["config_sha256"], audit_doc)
         self.assertIn(self.V100_FROZEN["payload"], comp_doc)
         self.assertIn(self.V101_FROZEN["payload"], comp_doc)
+        self.assertIn(rel_manifest["payload_sha256"], comp_doc)
         self.assertIn("discord-game-presence", comp_doc)
 
     def test_docs_and_evidence_have_no_secrets_private_paths_or_unverified_user_anecdotes(self) -> None:

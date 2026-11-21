@@ -1,7 +1,7 @@
-# Release Notes — Nox Archinstall `v1.0.2` (Em Revisão)
+# Release Notes — Nox Archinstall `v1.0.2`
 
-> **Estado:** Preparada para revisão em PR; **`v1.0.1`** permanece como release estável `Latest` publicada até aprovação e publicação oficial da **`v1.0.2`** pelo proprietário.  
-> **Repositório oficial atualizado:** [`Awerkori/nox-arch-install`](https://github.com/Awerkori/nox-arch-install). As releases imutáveis anteriores [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) e [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) permanecem integralmente preservadas.
+> **Estado:** Publicada em [`releases/tag/v1.0.2`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2) (`Latest`, `immutable: true`, integrada via [PR #3](https://github.com/Awerkori/nox-arch-install/pull/3) no commit `badeda3120d107c0a43deab53c25c808cd38f1f5`).  
+> **Repositório oficial:** [`Awerkori/nox-arch-install`](https://github.com/Awerkori/nox-arch-install). As releases imutáveis anteriores [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) e [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) permanecem integralmente preservadas.
 
 ## 1. Novidades da Revisão `v1.0.2`
 
