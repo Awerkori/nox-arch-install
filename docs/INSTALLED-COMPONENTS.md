@@ -6,9 +6,8 @@
 ## Metadados da Revisão Documentada
 
 - **Repositório:** `https://github.com/Awerkori/nox-arch-install`
-- **Release estável atual (`Latest`):** [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) (payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`)
-- **Próxima revisão em preparação (`v1.0.2`):** [`manifests/release.json`](../manifests/release.json) / [`RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md) (adiciona `discord-game-presence` + serviço systemd por usuário + `checkdepends`/`validpgpkeys` isolado no AUR)
-- **Release anterior preservada:** [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) (payload SHA-256 `08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9`)
+- **Release estável atual (`Latest`):** [`v1.0.2`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2) (payload SHA-256 `723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774`, notas em [`RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md))
+- **Releases anteriores preservadas:** [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) (payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`) e [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) (payload SHA-256 `08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9`)
 - **Base de comprovação:** Instalações limpas independentes a partir da ISO oficial `archlinux-2026.11.01-x86_64.iso` (`ACCEPT-A-V101-FINAL` / `ACCEPT-B-V101-FINAL` para `v1.0.1`, e `dev1-v102` limpa para `v1.0.2` verificada contra [`INSTALLED-PACKAGES.tsv`](INSTALLED-PACKAGES.tsv)).
 
 ### Contagem Total de Pacotes (`v1.0.2` Medido em `dev1-v102`)

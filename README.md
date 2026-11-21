@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/Awerkori/nox-arch-install/actions/workflows/ci.yml"><img src="https://github.com/Awerkori/nox-arch-install/actions/workflows/ci.yml/badge.svg?branch=main" alt="Nox Archinstall CI" /></a>
-  <a href="https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1"><img src="https://img.shields.io/badge/release-v1.0.1%20est%C3%A1vel-7c3aed?style=flat-square" alt="Release estável v1.0.1" /></a>
+  <a href="https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2"><img src="https://img.shields.io/badge/release-v1.0.2%20est%C3%A1vel-7c3aed?style=flat-square" alt="Release estável v1.0.2" /></a>
   <img src="https://img.shields.io/badge/arch-x86--64--v4%20%C2%B7%20linux--cachyos-5b21b6?style=flat-square" alt="Arquitetura x86-64-v4 e linux-cachyos" />
   <img src="https://img.shields.io/badge/boot-Limine%20%C2%B7%20BLAKE2B%20%C2%B7%20sbctl-a855f7?style=flat-square" alt="Limine BLAKE2B e sbctl" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/licen%C3%A7a-AGPL--3.0-1f1635?style=flat-square" alt="Licença AGPL-3.0" /></a>
@@ -47,24 +47,24 @@ Ele parte da **ISO oficial do Arch Linux** (`archinstall 4.5`) para garantir bas
 | **Segurança** | Chaves locais individuais via **`sbctl`**, `UMASK 022` isolado no alvo e verificações fail-closed |
 | **Snapshots** | **Snapshots PRE/POST automáticos** (`Snapper` `root` máx. 2 + `snap-pac` + `limine-snapper-sync`) e **restauração assistida** (`Limine` / `limine-snapper-restore`) |
 | **Desktop** | **Umbriel** (`dwindle`), **Noctalia Shell / Greeter / Lock Screen**, **Obsidian Purple** e `mpvpaper` |
-| **Aplicativos** | **Kitty**, **Bash**, **Luciole**, **Firefox Pure** (`CachyOS`), **btop**, **fastfetch**, `nox-topgrade`, **ProtonPlus** + `discord-game-presence` (`v1.0.2` em preparação) |
+| **Aplicativos** | **Kitty**, **Bash**, **Luciole**, **Firefox Pure** (`CachyOS`), **btop**, **fastfetch**, `nox-topgrade`, **ProtonPlus** e **`discord-game-presence`** (instalado automaticamente; serviço `--user` inicia na sessão do usuário) |
 
 ---
 
-## Como Instalar (`v1.0.1` Estável Publicada)
+## Como Instalar (`v1.0.2` Estável Publicada)
 
-> **Estado das versões:** a release estável atual, publicada e protegida por imutabilidade no GitHub é a **[`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1)** (`Latest`). A próxima revisão **`v1.0.2`** (integração automática de `discord-game-presence` + keyring PGP isolado para AUR) está preparada em [`manifests/release.json`](manifests/release.json) e [`docs/RELEASE-NOTES-v1.0.2.md`](docs/RELEASE-NOTES-v1.0.2.md), aguardando aprovação para publicação. A versão anterior **[`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0)** permanece preservada integralmente no histórico de releases.
+> **Estado das versões:** a release estável atual, publicada e protegida por imutabilidade no GitHub é a **[`v1.0.2`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2)** (`Latest`, cadeia verificada em [`manifests/release.json`](manifests/release.json) — inclui integração obrigatória do **`discord-game-presence`** iniciando automaticamente na sessão do usuário). As versões anteriores **[`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1)** e **[`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0)** permanecem preservadas integralmente no histórico de releases.
 
 > **AVISO DESTRUTIVO:** O disco selecionado durante a instalação será **formatado integralmente** e **todos os dados existentes serão apagados permanentemente**. Faça backup antes de continuar.
 
-Na **ISO oficial do Arch Linux** (`archlinux-2026.11.01-x86_64.iso`, modo UEFI 64 bits, Secure Boot temporariamente desativado na BIOS e conexão de rede ativa), execute este **único comando público oficial da release publicada `v1.0.1`**:
+Na **ISO oficial do Arch Linux** (`archlinux-2026.11.01-x86_64.iso`, modo UEFI 64 bits, Secure Boot temporariamente desativado na BIOS e conexão de rede ativa), execute este **único comando público oficial da release publicada `v1.0.2`**:
 
 ```bash
 sh -c 'set -eu; d=$(umask 077; mktemp -d); trap "rm -rf \"$d\"" EXIT INT TERM; \
-curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-install.py -o "$d/nox-install.py"; \
-printf "%s  %s/nox-install.py\n" "fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47" "$d" | sha256sum -c -; \
-curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/user_configuration.json -o "$d/nox-cfg.json"; \
-printf "%s  %s/nox-cfg.json\n" "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867" "$d" | sha256sum -c -; \
+curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-install.py -o "$d/nox-install.py"; \
+printf "%s  %s/nox-install.py\n" "6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf" "$d" | sha256sum -c -; \
+curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/user_configuration.json -o "$d/nox-cfg.json"; \
+printf "%s  %s/nox-cfg.json\n" "c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775" "$d" | sha256sum -c -; \
 umask 022; python3 "$d/nox-install.py" --config "$d/nox-cfg.json"'
 ```
 
@@ -76,7 +76,7 @@ O assistente exibe **4 etapas numeradas** (`[1/4]` seleção do disco → `[2/4]
 
 | Guia | Assunto |
 |---|---|
-| [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Guia passo a passo na ISO, Wi-Fi `iwctl` e hashes congelados da `v1.0.1` (e histórico `v1.0.0`) |
+| [`docs/INSTALLATION.md`](docs/INSTALLATION.md) | Guia passo a passo na ISO, Wi-Fi `iwctl` e hashes congelados da `v1.0.2` (e histórico `v1.0.1`/`v1.0.0`) |
 | [`docs/KEYBINDS_MIGRATION.md`](docs/KEYBINDS_MIGRATION.md) | Atalhos completos do compositor **Umbriel** e launcher **Noctalia** |
 | [`docs/SECURE-BOOT-MSI.md`](docs/SECURE-BOOT-MSI.md) | Guia físico para **MSI PRO B650M-P** (`FQ0001`, `--microsoft`, `JBAT1`, Fases A–F) |
 | [`docs/SECURE-BOOT.md`](docs/SECURE-BOOT.md) | Arquitetura geral de **Secure Boot**, `sbctl` e fluxo de 5 estágios |
@@ -86,7 +86,7 @@ O assistente exibe **4 etapas numeradas** (`[1/4]` seleção do disco → `[2/4]
 | [`docs/TOPGRADE-PROTON-INTEGRATION.md`](docs/TOPGRADE-PROTON-INTEGRATION.md) | Atualizações unificadas (`nox-topgrade` + `paru` + `ProtonPlus` + Proton-CachyOS) |
 | [`docs/FINAL-AUDIT-REPORT.md`](docs/FINAL-AUDIT-REPORT.md) | Relatório técnico de auditoria, testes de contrato e homologação em VMs limpas |
 | [`docs/CREDITS-AND-LICENSES.md`](docs/CREDITS-AND-LICENSES.md) | Autoria própria (`AGPL-3.0`) e créditos dos projetos upstream |
-| [`docs/RELEASE-NOTES-v1.0.2.md`](docs/RELEASE-NOTES-v1.0.2.md) | Notas da próxima release `v1.0.2` (`discord-game-presence` + keyring PGP isolado AUR) |
+| [`docs/RELEASE-NOTES-v1.0.2.md`](docs/RELEASE-NOTES-v1.0.2.md) | Notas da release publicada `v1.0.2` (`discord-game-presence` + keyring PGP isolado AUR) |
 
 ---
 

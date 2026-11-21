@@ -81,18 +81,17 @@ curl -I https://archlinux.org
 ## 3. Cadeia de Confiança e Comando Oficial de Instalação
 
 > **Estado das versões no GitHub:**
-> - **Release estável atual (`v1.0.1` — `Latest` e Imutável):** publicada em [`releases/tag/v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1). **Este é o comando oficial vigente para execução imediata na ISO.**
-> - **Próxima revisão preparada (`v1.0.2` — Em Revisão):** integração obrigatória do `discord-game-presence` e suporte AUR isolado a `checkdepends` + `validpgpkeys` em [`manifests/release.json`](../manifests/release.json) e [`RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md) (aguardando aprovação humana para merge e publicação).
-> - **Release anterior preservada (`v1.0.0`):** mantida intacta para referência histórica em [`releases/tag/v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0).
+> - **Release estável atual (`v1.0.2` — `Latest` e Imutável):** publicada em [`releases/tag/v1.0.2`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.2) com cadeia verificada em [`manifests/release.json`](../manifests/release.json) e notas em [`RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md). **Este é o comando oficial vigente para execução imediata na ISO.**
+> - **Releases anteriores preservadas (`v1.0.1` e `v1.0.0`):** mantidas intactas para referência histórica em [`releases/tag/v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) e [`releases/tag/v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0).
 
-### Comando Oficial Verificado — Release Estável Publicada `v1.0.1` (Vigente)
+### Comando Oficial Verificado — Release Estável Publicada `v1.0.2` (Vigente)
 
-| Artefato (`v1.0.1` Publicada) | Origem Congelada | SHA-256 Verificado |
+| Artefato (`v1.0.2` Publicada) | Origem Congelada | SHA-256 Verificado |
 |---|---|---|
-| `nox-install.py` | [`releases/download/v1.0.1/nox-install.py`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-install.py) | `fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47` |
-| `user_configuration.json` | [`releases/download/v1.0.1/user_configuration.json`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/user_configuration.json) | `9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867` |
-| `nox-archinstall-payload-v1.0.1.tar.gz` | [`releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz) | `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2` |
-| `nox-archinstall-payload-v1.0.1.tar.gz.sha256` | [`releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz.sha256`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz.sha256) | `c6d52792ff1e1038663c633ea81a4f96d9db953ef54139a221b00ee46373ccf0` |
+| `nox-install.py` | [`releases/download/v1.0.2/nox-install.py`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-install.py) | `6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf` |
+| `user_configuration.json` | [`releases/download/v1.0.2/user_configuration.json`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/user_configuration.json) | `c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775` |
+| `nox-archinstall-payload-v1.0.2.tar.gz` | [`releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz) | `723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774` |
+| `nox-archinstall-payload-v1.0.2.tar.gz.sha256` | [`releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz.sha256`](https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz.sha256) | `249dd2367c6b7bec1f7145b798a8577f8988f0c2c02ef8603c61f27d71969d1f` |
 
 > **AVISO DESTRUTIVO:** O disco selecionado durante a instalação será **formatado integralmente** e **todos os dados existentes serão apagados permanentemente**.
 
@@ -100,24 +99,26 @@ Execute na ISO oficial do Arch Linux (**recomendado**, usando diretório tempor�
 
 ```bash
 sh -c 'set -eu; d=$(umask 077; mktemp -d); trap "rm -rf \"$d\"" EXIT INT TERM; \
-curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-install.py -o "$d/nox-install.py"; \
-printf "%s  %s/nox-install.py\n" "fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47" "$d" | sha256sum -c -; \
-curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/user_configuration.json -o "$d/nox-cfg.json"; \
-printf "%s  %s/nox-cfg.json\n" "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867" "$d" | sha256sum -c -; \
+curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-install.py -o "$d/nox-install.py"; \
+printf "%s  %s/nox-install.py\n" "6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf" "$d" | sha256sum -c -; \
+curl --proto "=https" --proto-redir "=https" --tlsv1.2 -fsSL https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/user_configuration.json -o "$d/nox-cfg.json"; \
+printf "%s  %s/nox-cfg.json\n" "c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775" "$d" | sha256sum -c -; \
 umask 022; python3 "$d/nox-install.py" --config "$d/nox-cfg.json"'
 ```
 
 > **Nota sobre `umask` e modelo de confiança:** O download é feito em subshell com `umask 077` para manter os temporários restritos (`0600`), os dois arquivos passam por `sha256sum -c -` antes de executar código Python, e `umask 022` é garantido antes de invocar o `archinstall`. Sem chave pública offline pré-instalada na ISO do Arch Linux, a autenticidade apoia-se em HTTPS/TLSv1.2+ sem downgrade para HTTP e pinagem criptográfica SHA-256 explícita.
 
-### Cadeias Acíclicas e Histórico (`v1.0.2` em Revisão, `v1.0.1` e `v1.0.0`)
+### Cadeia Acíclica `v1.0.2` e Releases Anteriores Preservadas (`v1.0.1` e `v1.0.0`)
 
-A cadeia congelada completa da **`v1.0.2`** (preparada para revisão em [`manifests/release.json`](../manifests/release.json), ainda não publicada enquanto `v1.0.1` permanece `Latest`) utiliza (`i` `761725f7279fc11b086f76ab806bef204aec5eba` → `bootstrap/nox-install.py` `f9f6c46ba7461d5b6166d34706a5bd868ad628c6` → `user_configuration.json` `e50bab32d642dee85ede329100ba451d2f82f491` → `nox-archinstall-payload-v1.0.2.tar.gz`):
+A cadeia congelada completa da **`v1.0.2`** (`Latest` em [`manifests/release.json`](../manifests/release.json)) utiliza (`i` `761725f7279fc11b086f76ab806bef204aec5eba` → `bootstrap/nox-install.py` `f9f6c46ba7461d5b6166d34706a5bd868ad628c6` → `user_configuration.json` `e50bab32d642dee85ede329100ba451d2f82f491` → `nox-archinstall-payload-v1.0.2.tar.gz`) com isolamento interno de `umask 022`:
 - `i`: `a517cb46a9a1079a1370234dd1be6c9b37a87782be055364932ed58571e7ba05`
 - `nox-install.py`: `6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf`
 - `user_configuration.json`: `c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775`
 - `nox-archinstall-payload-v1.0.2.tar.gz`: `723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774` (`sha256` `.sha256`: `249dd2367c6b7bec1f7145b798a8577f8988f0c2c02ef8603c61f27d71969d1f`)
 
-Para conferência histórica, os digests originais da release anterior [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) (preservada no repositório) permanecem:
+Para conferência histórica, os digests originais das releases anteriores permanecem intactos:
+- **`v1.0.1`** ([`releases/tag/v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1)): `nox-install.py` `fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47`, `user_configuration.json` `9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867`, `nox-archinstall-payload-v1.0.1.tar.gz` `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`
+- **`v1.0.0`** ([`releases/tag/v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0)):
 - `nox-install.py`: `fce3f9a83e2b8c13666cf583f143096de37b8dd312e59dd8c6af4acbabb82f10`
 - `user_configuration.json`: `6754aefcdfb659e1abdfb5036c158a609d1672f945186a1e692edeab2e104e4c`
 - `nox-archinstall-payload-v1.0.0.tar.gz`: `08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9`
