@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Shared logging, state tracking, context guards, and atomic file helpers.
 
-NOX_VERSION="1.0.1"
+NOX_VERSION="1.0.2"
 NOX_STATE_DIR="${NOX_STATE_DIR:-/var/lib/nox-archinstall}"
 NOX_LOG_DIR="${NOX_LOG_DIR:-/var/log/nox-archinstall}"
 NOX_CFG_DIR="${NOX_CFG_DIR:-/etc/nox-archinstall}"
@@ -205,4 +205,50 @@ EOF
       chown "${uid}:${gid}" "${uhome}/.local/share/applications/${base}"
     done
   done < <(nox_list_human_users)
+}
+
+nox_enable_user_systemd_unit() {
+  local unit_src="$1"
+  local skel_dir="${2:-/etc/skel}"
+  local unit_name
+  unit_name="$(basename "$unit_src")"
+  [[ -f "$unit_src" ]] || nox_die "Unidade systemd ausente: $unit_src"
+
+  local wanted_raw target
+  wanted_raw="$(grep -E '^WantedBy=' "$unit_src" | cut -d= -f2- | tr ' ' '\n' | sed '/^[[:space:]]*$/d' || true)"
+  [[ -n "$wanted_raw" ]] || nox_die "Unidade $unit_src nao declara WantedBy valido."
+
+  local current_uid
+  current_uid="$(id -u)"
+
+  while IFS= read -r target; do
+    [[ "$target" =~ ^[A-Za-z0-9@._-]+\.target$ ]] || nox_die "Alvo WantedBy invalido em $unit_src: '$target'"
+    install -d -m 0755 \
+      "${skel_dir}/.config" \
+      "${skel_dir}/.config/systemd" \
+      "${skel_dir}/.config/systemd/user" \
+      "${skel_dir}/.config/systemd/user/${target}.wants"
+    ln -sfn "$unit_src" "${skel_dir}/.config/systemd/user/${target}.wants/${unit_name}"
+
+    local uname uid gid uhome _shell
+    while IFS=: read -r uname uid gid uhome _shell; do
+      [[ -n "$uname" && -d "$uhome" ]] || continue
+      if [[ "$current_uid" == "0" ]]; then
+        install -d -m 0755 -o "$uid" -g "$gid" \
+          "${uhome}/.config" \
+          "${uhome}/.config/systemd" \
+          "${uhome}/.config/systemd/user" \
+          "${uhome}/.config/systemd/user/${target}.wants"
+        ln -sfn "$unit_src" "${uhome}/.config/systemd/user/${target}.wants/${unit_name}"
+        chown -h "${uid}:${gid}" "${uhome}/.config/systemd/user/${target}.wants/${unit_name}"
+      else
+        install -d -m 0755 \
+          "${uhome}/.config" \
+          "${uhome}/.config/systemd" \
+          "${uhome}/.config/systemd/user" \
+          "${uhome}/.config/systemd/user/${target}.wants"
+        ln -sfn "$unit_src" "${uhome}/.config/systemd/user/${target}.wants/${unit_name}"
+      fi
+    done < <(nox_list_human_users)
+  done <<<"$wanted_raw"
 }

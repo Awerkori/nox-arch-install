@@ -1,12 +1,12 @@
 #!/usr/bin/env sh
-# Iniciador curto oficial do Nox Archinstall (v1.0.1)
+# Iniciador curto oficial do Nox Archinstall (v1.0.2)
 # Baixa o bootstrap oficial de referencia imutavel via HTTPS, valida o SHA-256 e executa com TTY interativo.
 set -eu
 umask 077
 
-BOOTSTRAP_COMMIT="46d3835b05ab43252454ce1648dd054f110857d5"
-DEFAULT_BOOTSTRAP_URL="https://raw.githubusercontent.com/Awerkori/arch-install/${BOOTSTRAP_COMMIT}/bootstrap/nox-install.py"
-DEFAULT_BOOTSTRAP_SHA256="fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47"
+BOOTSTRAP_COMMIT="f9f6c46ba7461d5b6166d34706a5bd868ad628c6"
+DEFAULT_BOOTSTRAP_URL="https://raw.githubusercontent.com/Awerkori/nox-arch-install/${BOOTSTRAP_COMMIT}/bootstrap/nox-install.py"
+DEFAULT_BOOTSTRAP_SHA256="6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf"
 
 BOOTSTRAP_URL="$DEFAULT_BOOTSTRAP_URL"
 BOOTSTRAP_SHA256="$DEFAULT_BOOTSTRAP_SHA256"

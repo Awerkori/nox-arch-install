@@ -1,48 +1,48 @@
 {
   "schema_version": 2,
-  "version": "v1.0.1",
-  "payload_commit": "83624813f3f32fd8608ee881b21b7ab6ec92cf3e",
-  "source_commit": "83624813f3f32fd8608ee881b21b7ab6ec92cf3e",
-  "config_commit": "83624813f3f32fd8608ee881b21b7ab6ec92cf3e",
-  "bootstrap_commit": "46d3835b05ab43252454ce1648dd054f110857d5",
-  "launcher_commit": "978c1f1892d19a42d3b1eb3bc0c2a9f1e9b093db",
-  "generated_at_utc": "2026-11-20T20:49:25Z",
+  "version": "v1.0.2",
+  "payload_commit": "e50bab32d642dee85ede329100ba451d2f82f491",
+  "source_commit": "e50bab32d642dee85ede329100ba451d2f82f491",
+  "config_commit": "e50bab32d642dee85ede329100ba451d2f82f491",
+  "bootstrap_commit": "f9f6c46ba7461d5b6166d34706a5bd868ad628c6",
+  "launcher_commit": "761725f7279fc11b086f76ab806bef204aec5eba",
+  "generated_at_utc": "2026-11-21T22:56:47Z",
   "trust_model": "immutable-commit-and-sha256-pinning",
-  "payload_url": "https://github.com/Awerkori/arch-install/releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz",
-  "payload_sha256": "52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2",
-  "config_sha256": "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867",
-  "bootstrap_sha256": "fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47",
-  "launcher_sha256": "ebd6a6515dad718530486bb8a14d7ce4e3f45d25bd0c7b364ba5b16996f5ce31",
+  "payload_url": "https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz",
+  "payload_sha256": "723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774",
+  "config_sha256": "c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775",
+  "bootstrap_sha256": "6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf",
+  "launcher_sha256": "a517cb46a9a1079a1370234dd1be6c9b37a87782be055364932ed58571e7ba05",
   "artifacts": {
     "launcher": {
       "name": "i",
       "path": "i",
-      "commit": "978c1f1892d19a42d3b1eb3bc0c2a9f1e9b093db",
-      "url": "https://raw.githubusercontent.com/Awerkori/arch-install/978c1f1892d19a42d3b1eb3bc0c2a9f1e9b093db/i",
-      "sha256": "ebd6a6515dad718530486bb8a14d7ce4e3f45d25bd0c7b364ba5b16996f5ce31"
+      "commit": "761725f7279fc11b086f76ab806bef204aec5eba",
+      "url": "https://raw.githubusercontent.com/Awerkori/nox-arch-install/761725f7279fc11b086f76ab806bef204aec5eba/i",
+      "sha256": "a517cb46a9a1079a1370234dd1be6c9b37a87782be055364932ed58571e7ba05"
     },
     "bootstrap": {
       "name": "nox-install.py",
       "path": "bootstrap/nox-install.py",
-      "commit": "46d3835b05ab43252454ce1648dd054f110857d5",
-      "url": "https://raw.githubusercontent.com/Awerkori/arch-install/46d3835b05ab43252454ce1648dd054f110857d5/bootstrap/nox-install.py",
-      "sha256": "fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47"
+      "commit": "f9f6c46ba7461d5b6166d34706a5bd868ad628c6",
+      "url": "https://raw.githubusercontent.com/Awerkori/nox-arch-install/f9f6c46ba7461d5b6166d34706a5bd868ad628c6/bootstrap/nox-install.py",
+      "sha256": "6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf"
     },
     "config": {
       "name": "user_configuration.json",
       "path": "user_configuration.json",
-      "commit": "83624813f3f32fd8608ee881b21b7ab6ec92cf3e",
-      "url": "https://raw.githubusercontent.com/Awerkori/arch-install/83624813f3f32fd8608ee881b21b7ab6ec92cf3e/user_configuration.json",
-      "sha256": "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867"
+      "commit": "e50bab32d642dee85ede329100ba451d2f82f491",
+      "url": "https://raw.githubusercontent.com/Awerkori/nox-arch-install/e50bab32d642dee85ede329100ba451d2f82f491/user_configuration.json",
+      "sha256": "c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775"
     },
     "payload": {
-      "name": "nox-archinstall-payload-v1.0.1.tar.gz",
-      "url": "https://github.com/Awerkori/arch-install/releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz",
-      "sha256": "52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2"
+      "name": "nox-archinstall-payload-v1.0.2.tar.gz",
+      "url": "https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz",
+      "sha256": "723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774"
     },
     "payload_checksum_file": {
-      "name": "nox-archinstall-payload-v1.0.1.tar.gz.sha256",
-      "sha256": "c6d52792ff1e1038663c633ea81a4f96d9db953ef54139a221b00ee46373ccf0"
+      "name": "nox-archinstall-payload-v1.0.2.tar.gz.sha256",
+      "sha256": "249dd2367c6b7bec1f7145b798a8577f8988f0c2c02ef8603c61f27d71969d1f"
     }
   },
   "reproducibility": {

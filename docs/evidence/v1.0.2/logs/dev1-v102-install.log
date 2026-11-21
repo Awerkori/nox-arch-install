@@ -1,0 +1,130 @@
+[2026-11-21T22:39:43Z] [INFO] >>> Executando etapa: 00-preflight
+[2026-11-21T22:39:43Z] [INFO] CPU AMD Zen 4/5 confirmada com suporte x86-64-v4.
+[2026-11-21T22:39:43Z] [INFO] Espaco livre OK: /=52444 MiB, /boot=4056/4087 MiB.
+[2026-11-21T22:39:44Z] [INFO] Preflight concluido com sucesso.
+[2026-11-21T22:39:44Z] [INFO] <<< Etapa '00-preflight' concluida em 1s.
+[2026-11-21T22:39:44Z] [INFO] >>> Executando etapa: 10-cachyos-repos
+[2026-11-21T22:39:44Z] [INFO] Importando chave GPG CachyOS (F3B607488DB35A47)...
+[2026-11-21T22:39:48Z] [INFO] Instalando keyring, mirrorlists e pacman fork do CachyOS...
+[2026-11-21T22:39:50Z] [INFO] Executando atualizacao coerente completa (pacman -Syyu)...
+[2026-11-21T22:41:50Z] [INFO] Classificando mirrors com cachyos-rate-mirrors...
+[2026-11-21T22:42:56Z] [INFO] Repositorios CachyOS e Pacman fork configurados com sucesso.
+[2026-11-21T22:42:56Z] [INFO] <<< Etapa '10-cachyos-repos' concluida em 192s.
+[2026-11-21T22:42:56Z] [INFO] >>> Executando etapa: 20-cachyos-kernel
+[2026-11-21T22:42:56Z] [INFO] Instalando linux-cachyos, headers, limine e limine-mkinitcpio-hook...
+[2026-11-21T22:44:03Z] [INFO] Removendo kernel temporario 'linux-zen' via pacman -Rns...
+[2026-11-21T22:44:04Z] [INFO] Gerando chaves privadas individuais de Secure Boot (sbctl create-keys)...
+[2026-11-21T22:44:06Z] [INFO] Instalando Limine EFI em /boot (com fallback BOOTX64.EFI)...
+[2026-11-21T22:44:06Z] [INFO] Executando limine-update para gerar initramfs e entradas linux-cachyos...
+[2026-11-21T22:44:09Z] [INFO] Kernel unico linux-cachyos e Limine EFI validados.
+[2026-11-21T22:44:09Z] [INFO] <<< Etapa '20-cachyos-kernel' concluida em 73s.
+[2026-11-21T22:44:09Z] [INFO] >>> Executando etapa: 30-cachyos-settings
+[2026-11-21T22:44:09Z] [INFO] Instalando paru (CachyOS) e pacotes de otimizacao...
+[2026-11-21T22:44:19Z] [INFO] Paru CachyOS, cachyos-settings, SCX LAVD, servicos e sudo validados.
+[2026-11-21T22:44:19Z] [INFO] <<< Etapa '30-cachyos-settings' concluida em 10s.
+[2026-11-21T22:44:19Z] [INFO] >>> Executando etapa: 40-network
+[2026-11-21T22:44:19Z] [INFO] Rede NM+iwd, BBR/fq e match restrito iwlwifi configurados.
+[2026-11-21T22:44:19Z] [INFO] <<< Etapa '40-network' concluida em 0s.
+[2026-11-21T22:44:19Z] [INFO] >>> Executando etapa: 50-desktop
+[2026-11-21T22:44:19Z] [INFO] Instalando stack desktop oficial (Umbriel + Noctalia + Greeter + Kitty + Firefox Pure + Btop + Fastfetch + ProtonPlus + Proton-CachyOS SLR + Mesa)...
+[2026-11-21T22:47:07Z] [INFO] Clonando AUR 'luciole-git' como usuario nao-root 'noxbuild'...
+[2026-11-21T22:47:13Z] [INFO] Compilando 'luciole-git' via makepkg sem root...
+[2026-11-21T22:48:42Z] [INFO] Pacote AUR 'luciole-git' compilado e instalado com sucesso.
+[2026-11-21T22:48:42Z] [INFO] Clonando AUR 'topgrade-bin' como usuario nao-root 'noxbuild'...
+[2026-11-21T22:48:43Z] [INFO] Compilando 'topgrade-bin' via makepkg sem root...
+[2026-11-21T22:48:47Z] [INFO] Pacote AUR 'topgrade-bin' compilado e instalado com sucesso.
+[2026-11-21T22:48:48Z] [INFO] Clonando AUR 'discord-game-presence' como usuario nao-root 'noxbuild'...
+[2026-11-21T22:48:49Z] [INFO] Importando chaves PGP declaradas para 'discord-game-presence' em keyring isolado...
+[2026-11-21T22:48:52Z] [INFO] Compilando 'discord-game-presence' via makepkg sem root...
+[2026-11-21T22:48:55Z] [INFO] Pacote AUR 'discord-game-presence' compilado e instalado com sucesso.
+[2026-11-21T22:48:56Z] [INFO] Stack desktop base instalado e auditado com sucesso.
+[2026-11-21T22:48:56Z] [INFO] <<< Etapa '50-desktop' concluida em 277s.
+[2026-11-21T22:48:56Z] [INFO] >>> Executando etapa: 51-input-displays
+[2026-11-21T22:48:58Z] [INFO] Teclado us/intl, Umbriel, Kitty e Noctalia Greeter configurados.
+[2026-11-21T22:48:58Z] [INFO] <<< Etapa '51-input-displays' concluida em 2s.
+[2026-11-21T22:48:58Z] [INFO] >>> Executando etapa: 52-audio
+[2026-11-21T22:49:01Z] [INFO] Audio PipeWire/WirePlumber, Bluetooth e Fuxi H3 fix configurados (sem HushMic).
+[2026-11-21T22:49:01Z] [INFO] <<< Etapa '52-audio' concluida em 3s.
+[2026-11-21T22:49:01Z] [INFO] >>> Executando etapa: 53-appearance
+[2026-11-21T22:49:04Z] [INFO] Tema escuro, Luciole + Firefox Pure XDG, launcher minimalista Noctalia, btop/fastfetch e font cache configurados.
+[2026-11-21T22:49:04Z] [INFO] <<< Etapa '53-appearance' concluida em 3s.
+[2026-11-21T22:49:04Z] [INFO] >>> Executando etapa: 60-snapshots
+[2026-11-21T22:49:05Z] [INFO] Criando configuracao Snapper 'root'...
+[2026-11-21T22:49:06Z] [INFO] Politica Snapper root (max 2), snap-pac e limine-snapper-sync configurados.
+[2026-11-21T22:49:06Z] [INFO] <<< Etapa '60-snapshots' concluida em 2s.
+[2026-11-21T22:49:06Z] [INFO] >>> Executando etapa: 70-memory
+[2026-11-21T22:49:06Z] [INFO] Criando subvolume Btrfs dedicado @swap...
+[2026-11-21T22:49:06Z] [INFO] Criando swapfile Btrfs de 2G em /nox-swap/swapfile (btrfs filesystem mkswapfile)...
+[2026-11-21T22:49:06Z] [INFO] Memoria ZRAM (cachyos-settings), swapfile @swap (2G pri=10) e protecao OOMD configurados.
+[2026-11-21T22:49:06Z] [INFO] <<< Etapa '70-memory' concluida em 0s.
+[2026-11-21T22:49:06Z] [INFO] >>> Executando etapa: 80-validation
+[2026-11-21T22:49:06Z] [INFO] [PASS] repos cachyos configurados na ordem oficial antes de Arch
+[2026-11-21T22:49:06Z] [INFO] [PASS] linux-cachyos e headers instalados
+[2026-11-21T22:49:06Z] [INFO] [PASS] nenhum kernel concorrente instalado
+[2026-11-21T22:49:06Z] [INFO] [PASS] arquivos de boot limine e cachyos presentes
+[2026-11-21T22:49:06Z] [INFO] [PASS] limine-mkinitcpio-hook, limine-snapper-sync e sbctl instalados
+[2026-11-21T22:49:06Z] [INFO] [PASS] limine.conf contem Arch Linux -> Project Nox (kernel-id=linux-cachyos), tema e boot automatico 5s
+[2026-11-21T22:49:06Z] [INFO] [PASS] hook btrfs-overlayfs presente em /etc/mkinitcpio.conf
+[2026-11-21T22:49:06Z] [INFO] [PASS] /.snapshots montado como subvolume Btrfs
+[2026-11-21T22:49:06Z] [INFO] [PASS] cadeia criptografica Limine + sbctl validada (nox-secureboot-verify)
+[2026-11-21T22:49:07Z] [INFO] [PASS] estado limpo e integro do Limine (nox-limine-integrity --verify)
+[2026-11-21T22:49:07Z] [INFO] [PASS] idioma padrao en_CA.UTF-8 com fallback en_US configurado e gerado
+[2026-11-21T22:49:07Z] [INFO] [PASS] fuso horario America/Sao_Paulo configurado
+[2026-11-21T22:49:07Z] [INFO] [PASS] teclado us/intl e cedilha (.XCompose) configurados
+[2026-11-21T22:49:07Z] [INFO] [PASS] sysctl de performance e gamemode.ini presentes
+[2026-11-21T22:49:07Z] [INFO] [PASS] regras Fuxi H3 hotplug e BlueZ/WirePlumber presentes
+[2026-11-21T22:49:07Z] [INFO] [PASS] mesa e vulkan-radeon 64/32 bits instalados
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacman instalado do CachyOS
+[2026-11-21T22:49:07Z] [INFO] [PASS] paru estavel instalado do CachyOS
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: grub
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: grub-btrfs
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: os-prober
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: hyprland
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: sddm
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: nemo
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: plasma-desktop
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: gnome-shell
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: chromium
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: steam
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: discord
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: yay
+[2026-11-21T22:49:07Z] [INFO] [PASS] pacote proibido ausente: paru-git
+[2026-11-21T22:49:08Z] [INFO] [PASS] pacote proibido ausente: hushmic-bin
+[2026-11-21T22:49:08Z] [INFO] [PASS] pacote proibido ausente: htop
+[2026-11-21T22:49:08Z] [INFO] [PASS] pacote proibido ausente: glances
+[2026-11-21T22:49:08Z] [INFO] [PASS] pacote proibido ausente: neofetch
+[2026-11-21T22:49:08Z] [INFO] [PASS] pacote proibido ausente: macchina
+[2026-11-21T22:49:08Z] [INFO] [PASS] umbriel, noctalia, noctalia-greeter, greetd, mpvpaper, socat, kitty instalados
+[2026-11-21T22:49:08Z] [INFO] [PASS] binarios graficos e mpvpaper sem bibliotecas ausentes (ldd)
+[2026-11-21T22:49:08Z] [INFO] [PASS] vulkan-tools, mesa-utils e pilha grafica presentes (libva-utils ausente)
+[2026-11-21T22:49:08Z] [INFO] [PASS] luciole-git instalado e .desktop presente
+[2026-11-21T22:49:08Z] [INFO] [PASS] firefox-pure (CachyOS) instalado como navegador padrao XDG e dark/Obsidian CSS
+[2026-11-21T22:49:08Z] [INFO] [PASS] btop, rocm-smi-lib e fastfetch instalados com dashboard Obsidian Purple
+[2026-11-21T22:49:08Z] [INFO] [PASS] identidade visual Obsidian Purple aplicada em Noctalia, Lockscreen, Fontes, Plugins, GTK, Qt, Kitty, Umbriel e Greeter
+[2026-11-21T22:49:08Z] [INFO] [PASS] monitores e sessao sem desligamento/suspensao automaticos por inatividade
+[2026-11-21T22:49:08Z] [INFO] [PASS] teclado us(intl), dead keys e cedilha .XCompose configurados
+[2026-11-21T22:49:08Z] [INFO] [PASS] launcher minimalista Noctalia e ferramenta de busca tecnica configurados
+[2026-11-21T22:49:08Z] [INFO] [PASS] topgrade, protonplus e proton-cachyos-slr instalados e configurados
+[2026-11-21T22:49:09Z] [INFO] [PASS] discord-game-presence instalado e servico de usuario habilitado apenas por usuario
+[2026-11-21T22:49:09Z] [INFO] [PASS] greetd habilitado e apontando para nox-greeter-session
+[2026-11-21T22:49:09Z] [INFO] [PASS] umbriel config validate OK
+[2026-11-21T22:49:09Z] [INFO] [PASS] umbriel layout padrao dwindle
+[2026-11-21T22:49:09Z] [INFO] [PASS] visudo validado sem NOPASSWD
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: NetworkManager.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: scx_loader.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: ananicy-cpp.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: irqbalance.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: bluetooth.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: systemd-resolved.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: systemd-oomd.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] servico habilitado: limine-snapper-sync.service
+[2026-11-21T22:49:09Z] [INFO] [PASS] NetworkManager-wait-online.service desabilitado
+[2026-11-21T22:49:09Z] [INFO] [PASS] snapper-timeline.timer desabilitado
+[2026-11-21T22:49:09Z] [INFO] [PASS] shell bash para noxdev
+[2026-11-21T22:49:09Z] [INFO] [PASS] grupo wheel para noxdev
+[2026-11-21T22:49:09Z] [INFO] [PASS] permissoes .local, ProtonPlus visivel e overlays launcher para noxdev
+[2026-11-21T22:49:09Z] [INFO] [PASS] discord-game-presence habilitado e com dono correto para noxdev
+[2026-11-21T22:49:09Z] [INFO] Todas as checagens offline de 80-validation passaram!
+[2026-11-21T22:49:09Z] [INFO] <<< Etapa '80-validation' concluida em 3s.
+[2026-11-21T22:49:09Z] [INFO] >>> Executando etapa: 90-first-boot
+[2026-11-21T22:49:09Z] [INFO] <<< Etapa '90-first-boot' concluida em 0s.

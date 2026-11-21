@@ -1,29 +1,37 @@
-# Relatório Final de Auditoria de Engenharia, Hardening de Segurança e Homologação — Nox Archinstall (`v1.0.1`)
+# Relatório Final de Auditoria de Engenharia, Hardening de Segurança e Homologação — Nox Archinstall (`v1.0.1` + Preparação `v1.0.2`)
 
-> **Histórico de versões anteriores:**
-> - Pré-release [`v1.0.0-rc10`](https://github.com/Awerkori/arch-install/releases/tag/v1.0.0-rc10): preservada integralmente em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md`](history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md).
-> - Release estável publicada [`v1.0.0`](https://github.com/Awerkori/arch-install/releases/tag/v1.0.0): documentada em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0.md`](history/FINAL-AUDIT-REPORT-v1.0.0.md) (artefatos, tag e commit `73c21a171e4c672662feb35756dd7c46e54036c2` preservados sem alteração retroativa).
+> **Histórico e versões:**
+> - Pré-release [`v1.0.0-rc10`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0-rc10): preservada integralmente em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md`](history/FINAL-AUDIT-REPORT-v1.0.0-rc10.md).
+> - Release estável publicada [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0): documentada em [`docs/history/FINAL-AUDIT-REPORT-v1.0.0.md`](history/FINAL-AUDIT-REPORT-v1.0.0.md) (artefatos, tag e commit `73c21a171e4c672662feb35756dd7c46e54036c2` preservados sem alteração retroativa).
+> - Release estável publicada vigente (`Latest` / Imutável): [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) ([PR #1](https://github.com/Awerkori/nox-arch-install/pull/1), commit `efc8e9018a2c4bf15ff3493af1f36d0b7eddc84a`, payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`).
+> - Revisão em preparação (`v1.0.2` — Em Revisão): adiciona `discord-game-presence` (`0.2-1`, AUR), serviço `--user` por usuário humano e suporte AUR a `checkdepends` + `validpgpkeys` isolados, com evidências em [`docs/evidence/v1.0.2/`](evidence/v1.0.2/MANIFEST.sha256) e [`docs/RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md).
 
 ---
 
-## 1. Identificação da Revisão Analisada (`v1.0.1` — Publicada em `main`)
+## 1. Identificação da Revisão Congelada Atual (`v1.0.2` em Revisão; `v1.0.1` segue `Latest`)
 
-- **Projeto:** Nox Archinstall / Project Nox (`https://github.com/Awerkori/arch-install`)
-- **Versão analisada:** `v1.0.1` (publicada como `Latest` e imutável em [`releases/tag/v1.0.1`](https://github.com/Awerkori/arch-install/releases/tag/v1.0.1), sucedendo a `v1.0.0`)
-- **Integração:** [PR #1](https://github.com/Awerkori/arch-install/pull/1) (`hardening/v1.0.1` integrado em `main` no commit `efc8e9018a2c4bf15ff3493af1f36d0b7eddc84a`)
+- **Projeto:** Nox Archinstall / Project Nox (`https://github.com/Awerkori/nox-arch-install`)
+- **Versão vigente publicada (`Latest`):** `v1.0.1` (`immutable: true`)
+- **Versão preparada em `manifests/release.json`:** `v1.0.2` (aguardando aprovação para merge e publicação)
 - **ISO oficial homologada:** `archlinux-2026.11.01-x86_64.iso` (`SHA-256: 01bcdcf01af2f7d58f2794899c834770d25c9bfc945bd092b32bb66672a4a216`, `archinstall 4.5`)
 - **Manifesto de integridade:** [`manifests/release.json`](../manifests/release.json) (schema v2)
-- **Evidências públicas sanitizadas:** [`docs/evidence/v1.0.1/`](evidence/v1.0.1/MANIFEST.sha256)
+- **Evidências públicas sanitizadas:** [`docs/evidence/v1.0.1/`](evidence/v1.0.1/MANIFEST.sha256) e [`docs/evidence/v1.0.2/`](evidence/v1.0.2/MANIFEST.sha256)
 
-### Cadeia Acíclica de Commits Imutáveis e Hashes SHA-256 (`v1.0.1` Publicada)
+### Cadeia Acíclica de Commits Imutáveis e Hashes SHA-256 (`v1.0.2` Congelada em `manifests/release.json`)
 
 | Estágio | Artefato | Commit de Origem Imutável | SHA-256 |
 |---|---|---|---|
-| **Estágio 1 (Iniciador)** | [`i`](../i) | `978c1f1892d19a42d3b1eb3bc0c2a9f1e9b093db` | `ebd6a6515dad718530486bb8a14d7ce4e3f45d25bd0c7b364ba5b16996f5ce31` |
-| **Estágio 2 (Bootstrap)** | [`bootstrap/nox-install.py`](../bootstrap/nox-install.py) | `46d3835b05ab43252454ce1648dd054f110857d5` | `fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47` |
-| **Estágio 3 (Configuração)** | [`user_configuration.json`](../user_configuration.json) | `83624813f3f32fd8608ee881b21b7ab6ec92cf3e` | `9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867` |
-| **Estágio 4 (Payload)** | `nox-archinstall-payload-v1.0.1.tar.gz` | `83624813f3f32fd8608ee881b21b7ab6ec92cf3e` | `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2` |
-| **Arquivo `.sha256`** | `nox-archinstall-payload-v1.0.1.tar.gz.sha256` | `—` | `c6d52792ff1e1038663c633ea81a4f96d9db953ef54139a221b00ee46373ccf0` |
+| **Estágio 1 (Iniciador)** | [`i`](../i) | `761725f7279fc11b086f76ab806bef204aec5eba` | `a517cb46a9a1079a1370234dd1be6c9b37a87782be055364932ed58571e7ba05` |
+| **Estágio 2 (Bootstrap)** | [`bootstrap/nox-install.py`](../bootstrap/nox-install.py) | `f9f6c46ba7461d5b6166d34706a5bd868ad628c6` | `6d0bf5a220badb5c67d057d7ae81947ff90fca6011c4de4b7a2f442bf8042ddf` |
+| **Estágio 3 (Configuração)** | [`user_configuration.json`](../user_configuration.json) | `e50bab32d642dee85ede329100ba451d2f82f491` | `c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775` |
+| **Estágio 4 (Payload)** | `nox-archinstall-payload-v1.0.2.tar.gz` | `e50bab32d642dee85ede329100ba451d2f82f491` | `723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774` |
+| **Arquivo `.sha256`** | `nox-archinstall-payload-v1.0.2.tar.gz.sha256` | `—` | `249dd2367c6b7bec1f7145b798a8577f8988f0c2c02ef8603c61f27d71969d1f` |
+
+*(Cadeia publicada e imutável da `v1.0.1` preservada: `i` `978c1f1892d19a42d3b1eb3bc0c2a9f1e9b093db` (`ebd6a651...`) → `bootstrap/nox-install.py` `46d3835b05ab43252454ce1648dd054f110857d5` (`fa6c2a3b...`) → `user_configuration.json` `83624813f3f32fd8608ee881b21b7ab6ec92cf3e` (`9cb32121...`) → `nox-archinstall-payload-v1.0.1.tar.gz` (`52008f9c...`), `.sha256` `c6d52792...`.)*
+
+### Validação Limpa da Revisão `v1.0.2` (`dev1-v102`)
+- **Instalação limpa (`ISO → vda`):** `EXIT_CODE=0`, `717` pacotes medidos (`102` explícitos, `615` dependências, `3` AUR via `pacman -Qm`: `luciole-git`, `topgrade-bin`, `discord-game-presence`), `0` ocorrências de `lookup self`.
+- **Login gráfico e reboot consecutivo (`boot1` + `boot2`):** `discord-game-presence.service` `enabled` por usuário (`~/.config/systemd/user/default.target.wants/` e `/etc/skel/`, ausente de `/etc/systemd/user/default.target.wants/`), `active` (`Loaded 25388 games`), `steam` e `discord` ausentes, `0` falhas (`system` e `user`), `nox-limine-integrity --verify` e `nox-secureboot-verify` `PASS`.
 
 ---
 

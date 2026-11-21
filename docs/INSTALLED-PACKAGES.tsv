@@ -34,7 +34,7 @@ bluez	5.88-1.1	explicit	cachyos-extra-znver4	Daemons for the bluetooth protocol 
 bluez-libs	5.88-1.1	dependency	cachyos-extra-znver4	Deprecated libraries for the bluetooth protocol stack
 bluez-utils	5.88-1.1	explicit	cachyos-extra-znver4	Development and debugging utilities for the bluetooth protocol stack
 boost-libs	1.92.0-2.1	dependency	cachyos-extra-znver4	Free peer-reviewed portable C++ source libraries (runtime libraries)
-bpf	7.3.4-1	dependency	extra	BPF tools
+bpf	7.3.5-1	dependency	extra	BPF tools
 brotli	1.2.1-1.1	dependency	cachyos-core-znver4	Generic-purpose lossless compression algorithm
 btop	1.4.8-1.1	explicit	cachyos-extra-znver4	A monitor of system resources, bpytop ported to C++
 btrfs-progs	7.3-1	explicit	core	Btrfs filesystem utilities
@@ -48,7 +48,7 @@ cachyos-firefox-settings	20251204-1	dependency	cachyos	CachyOS settings for Fire
 cachyos-keyring	20240331-1	explicit	cachyos	CachyOS keyring
 cachyos-mirrorlist	27-1	explicit	cachyos	CachyOS repository mirrorlist
 cachyos-rate-mirrors	27-1	explicit	cachyos	CachyOS - Rate mirrors service
-cachyos-settings	1:1.4.4-1	explicit	cachyos	CachyOS - Settings
+cachyos-settings	1:1.4.5-1	explicit	cachyos	CachyOS - Settings
 cachyos-v4-mirrorlist	27-1	explicit	cachyos	CachyOS repository mirrorlist
 cairo	1.18.6-1.1	dependency	cachyos-extra-znver4	2D graphics library with support for multiple output devices
 cairomm-1.16	1.18.1-1.1	dependency	cachyos-extra-znver4	C++ bindings for Cairo
@@ -72,6 +72,7 @@ default-cursors	3-1	dependency	extra	Default cursor set
 desktop-file-utils	0.29-1.1	dependency	cachyos-extra-znver4	Command line utilities for working with desktop entries
 device-mapper	2.03.44-1.1	dependency	cachyos-core-znver4	Device mapper userspace library and tools
 diffutils	3.12-2	dependency	core	Utility programs used for creating patch files
+discord-game-presence	0.2-1	explicit	AUR/foreign	Show running games in a sandboxed Discord as Rich Presence
 double-conversion	3.4.0-1.1	dependency	cachyos-extra-znver4	Binary-decimal and decimal-binary routines for IEEE doubles
 duktape	2.7.0-7.1	dependency	cachyos-extra-znver4	Embeddable Javascript engine
 e2fsprogs	1.47.4-1.1	dependency	cachyos-core-znver4	Ext2/3/4 filesystem utilities
@@ -83,7 +84,7 @@ ethtool	1:7.2-1.1	explicit	cachyos-extra-znver4	Utility for controlling network 
 expat	2.10.0-1.1	dependency	cachyos-core-znver4	An XML parser library
 fakeroot	2:1.37.2-1.1	dependency	cachyos-core-znver4	Tool for simulating superuser privileges
 fastfetch	2.71.0-1.1	explicit	cachyos-extra-znver4	A feature-rich and performance oriented neofetch like system information tool
-ffmpeg	2:9.0.2-5.1	dependency	cachyos-extra-znver4	Complete solution to record, convert and stream audio and video
+ffmpeg	2:9.1-1.1	dependency	cachyos-extra-znver4	Complete solution to record, convert and stream audio and video
 ffmpegthumbnailer	2.3.1-1.1	explicit	cachyos-extra-znver4	Lightweight video thumbnailer that can be used by file managers
 fftw	3.3.11-1.2	dependency	cachyos-extra-znver4	A library for computing the discrete Fourier transform (DFT)
 file	5.48-1.1	dependency	cachyos-core-znver4	File type identification utility
@@ -91,7 +92,7 @@ filesystem	2025.10.12-1	dependency	core	Base Arch Linux files
 findutils	4.11.0-1	dependency	core	GNU utilities to locate files
 firefox-pure	160.0-1	explicit	cachyos-znver4	Fast, Private & Safe Web Browser
 flac	1.5.0-1.1	dependency	cachyos-extra-znver4	Free Lossless Audio Codec
-flex	2.6.15-1.1	dependency	cachyos-core-znver4	A tool for generating text-scanning programs
+flex	2.7.1-1.1	dependency	cachyos-core-znver4	A tool for generating text-scanning programs
 fmt	12.2.0-1.1	dependency	cachyos-extra-znver4	Open-source formatting library for C++
 fontconfig	2:2.18.4-1.1	dependency	cachyos-extra-znver4	Library for configuring and customizing font access
 freetype2	2.15.0-1.1	dependency	cachyos-extra-znver4	Font rasterization library
@@ -117,12 +118,12 @@ glib2	2.90.1-1.1	dependency	cachyos-core-znver4	Low level core library
 glibc	2.44+r78+gfcfb867c58ab-1	dependency	cachyos-znver4	GNU C Library
 glibmm-2.68	2.90.0-1.1	dependency	cachyos-extra-znver4	C++ bindings for GLib
 glslang	1:1.4.363.0-1.1	dependency	cachyos-extra-znver4	OpenGL and OpenGL ES shader front end and validator
-glycin	2.2.6-1.1	dependency	cachyos-extra-znver4	Sandboxed and extendable image decoding
+glycin	2.2.6-2.1	dependency	cachyos-extra-znver4	Sandboxed and extendable image decoding
 gmp	6.3.0-3.1	dependency	cachyos-core-znver4	A free library for arbitrary precision arithmetic
 gnome-themes-extra	1:3.28-1	explicit	extra	Extra GNOME themes (legacy HighContrast icon theme and index files for Adwaita)
 gnulib-l10n	20241231-1	dependency	core	The Gnulib localizations
 gnupg	2.4.9-4.1	dependency	cachyos-core-znver4	Complete and free implementation of the OpenPGP standard
-gnutls	3.8.13-3.1	dependency	cachyos-core-znver4	A library which provides a secure layer over a reliable transport layer
+gnutls	3.8.14-1.1	dependency	cachyos-core-znver4	A library which provides a secure layer over a reliable transport layer
 google-glog	0.7.1-2.1	dependency	cachyos-extra-znver4	Logging library for C++
 gperftools	2.19.3-1.1	dependency	cachyos-extra-znver4	Fast, multi-threaded malloc and nifty performance analysis tools
 gpgme	2.2.0-1.1	dependency	cachyos-core-znver4	C wrapper library for GnuPG
@@ -163,7 +164,7 @@ hwloc	2.15.0-1.1	dependency	cachyos-extra-znver4	Portable Hardware Locality is a
 iana-etc	20260617-1	dependency	core	/etc/protocols and /etc/services provided by IANA
 icu	78.3-1.1	dependency	cachyos-core-znver4	International Components for Unicode library
 imath	3.2.3-1.1	dependency	cachyos-extra-znver4	A C++ and python library of 2D and 3D vector, matrix, and math operations for computer graphics
-inotify-tools	4.26.282-1.1	explicit	cachyos-extra-znver4	a C library and a set of command-line programs for Linux providing a simple interface to inotify.
+inotify-tools	4.26.291-1.1	explicit	cachyos-extra-znver4	a C library and a set of command-line programs for Linux providing a simple interface to inotify.
 inxi	3.3.41.1-2	dependency	extra	Full featured CLI system information tool
 iproute2	7.3.0-1.1	dependency	cachyos-core-znver4	IP Routing Utilities
 iptables	1:1.8.13-1.1	dependency	cachyos-core-znver4	Linux kernel packet control tool (using nft interface)
@@ -180,9 +181,9 @@ json-c	0.19-1.1	dependency	cachyos-core-znver4	JSON implementation in C
 json-glib	1.10.8-1.1	dependency	cachyos-extra-znver4	JSON library built on GLib
 kbd	2.10.0-1.1	dependency	cachyos-core-znver4	Keytable files and keyboard utilities
 keyutils	1.6.3-4.1	dependency	cachyos-core-znver4	Linux Key Management Utilities
-kitty	0.50.0-1.1	explicit	cachyos-extra-znver4	A modern, hackable, featureful, OpenGL-based terminal emulator
-kitty-shell-integration	0.50.0-1.1	dependency	cachyos-extra-znver4	Shell integration scripts for kitty, an OpenGL-based terminal emulator
-kitty-terminfo	0.50.0-1.1	dependency	cachyos-extra-znver4	Terminfo for kitty, an OpenGL-based terminal emulator
+kitty	0.51.0-1.1	explicit	cachyos-extra-znver4	A modern, hackable, featureful, OpenGL-based terminal emulator
+kitty-shell-integration	0.51.0-1.1	dependency	cachyos-extra-znver4	Shell integration scripts for kitty, an OpenGL-based terminal emulator
+kitty-terminfo	0.51.0-1.1	dependency	cachyos-extra-znver4	Terminfo for kitty, an OpenGL-based terminal emulator
 kmod	34.3-2	dependency	core	Linux kernel module management tools and library
 krb5	1.22.2-2	dependency	core	The Kerberos network authentication system
 l-smash	2.14.5-4.1	dependency	cachyos-extra-znver4	MP4 muxer and other tools
@@ -204,7 +205,7 @@ lib32-gcc-libs	16.2.1+r23+gd564253eb6c8-3	dependency	cachyos-znver4	32-bit runti
 lib32-glib2	2.90.1-1	dependency	multilib	Low level core library - 32-bit
 lib32-glibc	2.44+r78+gfcfb867c58ab-1	dependency	cachyos-znver4	GNU C Library (32-bit)
 lib32-gmp	6.3.0-2	dependency	multilib	A free library for arbitrary precision arithmetic (32-bit)
-lib32-gnutls	3.8.13-3	dependency	multilib	A library which provides a secure layer over a reliable transport layer (32-bit)
+lib32-gnutls	3.8.14-1	dependency	multilib	A library which provides a secure layer over a reliable transport layer (32-bit)
 lib32-icu	78.3-1	dependency	multilib	International Components for Unicode library (32 bit)
 lib32-json-c	0.19-1	dependency	multilib	JSON implementation in C (32-bit)
 lib32-keyutils	1.6.3-4	dependency	multilib	Linux Key Management Utilities (32-bit)
@@ -245,7 +246,7 @@ lib32-libxss	1.2.5-1	dependency	multilib	X11 Screen Saver extension library (32-
 lib32-libxxf86vm	1.1.7-1	dependency	multilib	X11 XFree86 video mode extension library (32-bit)
 lib32-llvm-libs	1:23.1.5-1	dependency	multilib	LLVM runtime libraries (32-bit)
 lib32-lm_sensors	1:3.6.2-2	dependency	multilib	Collection of user space tools for general SMBus access and hardware monitoring (32-bit)
-lib32-mesa	3:26.3.1-1	explicit	cachyos-znver4	Open-source OpenGL drivers - 32-bit
+lib32-mesa	3:26.3.1-5	explicit	cachyos-znver4	Open-source OpenGL drivers - 32-bit
 lib32-ncurses	6.6-2	dependency	multilib	System V Release 4.0 curses emulation library (32-bit)
 lib32-nettle	4.0-2	dependency	multilib	A low-level cryptographic library (32-bit)
 lib32-nspr	4.41-1	dependency	multilib	Netscape Portable Runtime (32-bit)
@@ -260,9 +261,9 @@ lib32-sqlite	3.54.0-1	dependency	multilib	A C library that implements an SQL dat
 lib32-systemd	262.2-1	dependency	multilib	system and service manager (32-bit)
 lib32-util-linux	2.42.4-1	dependency	multilib	Miscellaneous system utilities for Linux (32-bit)
 lib32-vulkan-icd-loader	1.4.363.0-1	explicit	multilib	Vulkan Installable Client Driver (ICD) Loader (32-bit)
-lib32-vulkan-mesa-implicit-layers	3:26.3.1-1	dependency	cachyos-znver4	Mesa's implicit Vulkan layers - 32-bit
-lib32-vulkan-mesa-layers	3:26.3.1-1	explicit	cachyos-znver4	Mesa's explicit Vulkan layers - 32-bit
-lib32-vulkan-radeon	3:26.3.1-1	explicit	cachyos-znver4	Open-source Vulkan driver for AMD GPUs - 32-bit
+lib32-vulkan-mesa-implicit-layers	3:26.3.1-5	dependency	cachyos-znver4	Mesa's implicit Vulkan layers - 32-bit
+lib32-vulkan-mesa-layers	3:26.3.1-5	explicit	cachyos-znver4	Mesa's explicit Vulkan layers - 32-bit
+lib32-vulkan-radeon	3:26.3.1-5	explicit	cachyos-znver4	Open-source Vulkan driver for AMD GPUs - 32-bit
 lib32-wayland	1.26.0-1	dependency	multilib	A computer display server protocol
 lib32-xcb-util-keysyms	0.4.1-2	dependency	multilib	Utility libraries for XC Binding - Standard X key constants and conversion to/from keycodes
 lib32-xz	5.8.4-1	dependency	multilib	Library and command line tools for XZ and LZMA compressed files (32-bit)
@@ -343,7 +344,7 @@ libinih	62-2.1	dependency	cachyos-core-znver4	A simple .INI file parser written 
 libinput	1.32.0-1.1	dependency	cachyos-extra-znver4	Input device management and event handling library
 libisl	0.28-1.1	dependency	cachyos-core-znver4	Library for manipulating sets and relations of integer points bounded by linear constraints
 libjpeg-turbo	3.2.1-1	dependency	extra	JPEG image codec with accelerated baseline compression and decompression
-libjxl	0.12.0-1.1	dependency	cachyos-extra-znver4	JPEG XL image format reference implementation
+libjxl	0.13.0-1.1	dependency	cachyos-extra-znver4	JPEG XL image format reference implementation
 libksba	1.8.1-1.1	dependency	cachyos-core-znver4	Library for working with X.509 certificates, CMS data and related objects
 liblc3	1.1.3-2.1	dependency	cachyos-extra-znver4	Low Complexity Communication Codec library and tools
 libldac	2.0.2.6-1.1	dependency	cachyos-extra-znver4	LDAC Bluetooth encoder library
@@ -425,7 +426,7 @@ libusb	1.0.30-1.1	dependency	cachyos-core-znver4	Library that provides generic a
 libva	2.24.1-1.1	explicit	cachyos-extra-znver4	Video Acceleration (VA) API for Linux
 libvdpau	1.5-4.2	dependency	cachyos-extra-znver4	Nvidia VDPAU library
 libverto	0.3.2-6.1	dependency	cachyos-core-znver4	Main event loop abstraction library
-libvips	8.18.7-1.1	dependency	cachyos-extra-znver4	A fast image processing library with low memory needs
+libvips	8.18.7-2.1	dependency	cachyos-extra-znver4	A fast image processing library with low memory needs
 libvorbis	1.3.7-4.1	dependency	cachyos-extra-znver4	Reference implementation of the Ogg Vorbis audio format
 libvpl	2.17.0-1.1	dependency	cachyos-extra-znver4	Intel Video Processing Library
 libvpx	1.17.0-1.1	dependency	cachyos-extra-znver4	VP8 and VP9 codec
@@ -463,12 +464,12 @@ libxv	1.0.13-1.1	dependency	cachyos-extra-znver4	X11 Video extension library
 libxxf86vm	1.1.7-1.1	dependency	cachyos-extra-znver4	X11 XFree86 video mode extension library
 licenses	20240728-1	dependency	core	A set of common license files
 lilv	0.28.0-1	dependency	extra	A C library interface to the LV2 plug-in standard
-limine	12.10.0-1	explicit	cachyos	Modern, secure, portable, multiprotocol bootloader and boot manager
+limine	12.10.0-1	explicit	cachyos	An advanced, portable, multiprotocol bootloader
 limine-mkinitcpio-hook	1.40.0-1	explicit	cachyos	Install kernels for the Limine bootloader.
 limine-snapper-sync	1.32.1-1	explicit	cachyos	Integrates Limine boot entries with Snapper snapshots.
 linux-api-headers	1:7.1-1	dependency	cachyos-znver4	Kernel headers sanitized for use in userspace
-linux-cachyos	7.3.5-1	explicit	cachyos-znver4	The Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel and modules
-linux-cachyos-headers	7.3.5-1	explicit	cachyos-znver4	Headers and scripts for building modules for the Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel
+linux-cachyos	7.3.5-2	explicit	cachyos-znver4	The Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel and modules
+linux-cachyos-headers	7.3.5-2	explicit	cachyos-znver4	Headers and scripts for building modules for the Linux EEVDF + LTO + AutoFDO + Propeller Cachy Sauce Kernel by CachyOS with other patches and improvements. kernel
 linux-firmware	1:20261019-1	explicit	cachyos	Firmware files for Linux - Default set
 linux-firmware-amd	1:20261019-1	dependency	cachyos	Firmware files for Linux - Firmware for non-GPU AMD devices
 linux-firmware-amdgpu	1:20261019-1	dependency	cachyos	Firmware files for Linux - Firmware for AMD Radeon GPUs
@@ -493,8 +494,8 @@ lsb-release	2.0.r55.a25a4fc-1	dependency	extra	LSB version query program
 lsof	4.99.7-1.1	dependency	cachyos-extra-znver4	Lists open files for running Unix processes
 lua	5.5.1-1	dependency	extra	Powerful lightweight programming language designed for extending applications
 lua54	5.4.9-1.1	dependency	cachyos-extra-znver4	Powerful lightweight programming language designed for extending applications
-luajit	2.1.1794386141+63c8f1a-1.1	dependency	cachyos-extra-znver4	Just-in-time compiler and drop-in replacement for Lua 5.1
-luciole-git	0.1.0.r363.g0b37f2cc7-1	explicit	AUR	A smooth, native Wayland file manager with fast previews, tabs, split view and Miller columns
+luajit	2.1.1795119671+96f7b29-1.1	dependency	cachyos-extra-znver4	Just-in-time compiler and drop-in replacement for Lua 5.1
+luciole-git	0.1.0.r411.gbae75c541-1	explicit	AUR/foreign	A smooth, native Wayland file manager with fast previews, tabs, split view and Miller columns
 lv2	1.18.10-2.1	dependency	cachyos-extra-znver4	Plugin standard for audio systems
 lz4	1:1.11.1-2	dependency	cachyos-znver4	Extremely fast compression algorithm
 lzo	2.10-5.1	dependency	cachyos-core-znver4	Portable lossless data compression library
@@ -503,7 +504,7 @@ mailcap	2.1.54-3	dependency	extra	Helper application and MIME type associations 
 make	4.4.1-3.1	dependency	cachyos-core-znver4	GNU make utility to maintain groups of programs
 md4c	0.6.0-2.1	dependency	cachyos-extra-znver4	C Markdown parser
 mdadm	4.6-2	dependency	core	A tool for managing/monitoring Linux md device arrays, also known as Software RAID
-mesa	3:26.3.1-1	dependency	cachyos-znver4	Open-source OpenGL drivers
+mesa	3:26.3.1-5	dependency	cachyos-znver4	Open-source OpenGL drivers
 mesa-utils	9.0.0-7.1	explicit	cachyos-extra-znver4	Essential Mesa utilities
 meson	1.12.1-2	explicit	extra	High productivity build system
 ministream	0.99.1-1.1	dependency	cachyos-extra-znver4	Lightweight alternative to AppStream
@@ -513,7 +514,7 @@ mobile-broadband-provider-info	20261111-1	dependency	extra	APN configuration pre
 mpdecimal	4.0.1-3.1	dependency	cachyos-core-znver4	Package for correctly-rounded arbitrary precision decimal floating point arithmetic
 mpfr	4.2.2-1.1	dependency	cachyos-core-znver4	Multiple-precision floating-point library
 mpg123	1.33.7-1.1	dependency	cachyos-extra-znver4	Console based real time MPEG Audio Player for Layer 1, 2 and 3
-mpv	1:0.42.0-2.1	dependency	cachyos-extra-znver4	a free, open source, and cross-platform media player
+mpv	1:0.42.0-3.1	dependency	cachyos-extra-znver4	a free, open source, and cross-platform media player
 mpvpaper	1.9-1	explicit	cachyos	video wallpaper program for wlroots based wayland compositors
 mtdev	1.1.7-1.1	dependency	cachyos-extra-znver4	A stand-alone library which transforms all variants of kernel MT events to the slotted type B protocol
 mujs	1.3.11-1.1	dependency	cachyos-extra-znver4	An embeddable Javascript interpreter in C
@@ -523,8 +524,8 @@ networkmanager	1.58.1-3	explicit	extra	Network connection manager and user appli
 nftables	1:1.1.7-3.1	dependency	cachyos-extra-znver4	Netfilter tables userspace tools
 ninja	1.13.2-3.1	explicit	cachyos-extra-znver4	Small build system with a focus on speed
 nlohmann-json	3.12.0-3	explicit	extra	JSON for Modern C++
-noctalia	5.5.0-1.1	explicit	cachyos-extra-znver4	A sleek, customizable desktop shell crafted for Wayland
-noctalia-greeter	1.7.0-1.1	explicit	cachyos-extra-znver4	Minimal greetd greeter matching the look and feel of Noctalia Shell
+noctalia	5.6.0-1.1	explicit	cachyos-extra-znver4	A sleek, customizable desktop shell crafted for Wayland
+noctalia-greeter	1.7.1-1.1	explicit	cachyos-extra-znver4	Minimal greetd greeter matching the look and feel of Noctalia Shell
 noto-fonts	1:2026.11.01-1	explicit	extra	Google Noto TTF fonts
 noto-fonts-cjk	20240730-1	explicit	extra	Google Noto CJK fonts
 noto-fonts-emoji	1:20260924-1	explicit	extra	Google Noto Color Emoji font
@@ -585,6 +586,11 @@ proton-cachyos-slr	1:11.0.20261015-1	explicit	cachyos	A compatibility tool for S
 protonplus	0.6.8-2	explicit	cachyos	A modern compatibility tools manager
 psmisc	23.7-2.1	dependency	cachyos-core-znver4	Miscellaneous procfs tools
 python	3.14.10-2	explicit	cachyos-znver4	The Python programming language
+python-iniconfig	2.3.0-1	dependency	extra	brain-dead simple config-ini parsing
+python-packaging	26.3-1	dependency	extra	Core utilities for Python packages
+python-pluggy	1.7.0-1	dependency	extra	Plugin and hook calling mechanisms for python
+python-pygments	2.21.0-1	dependency	extra	Python syntax highlighter
+python-pytest	1:9.2.0-1	explicit	extra	Simple powerful testing with Python
 python-tqdm	4.70.1-1	dependency	extra	Fast, Extensible Progress Meter
 qt5-base	5.15.19+kde+r97-1.1	dependency	cachyos-extra-znver4	A cross-platform application and UI framework
 qt5-svg	5.15.19+kde+r5-1.1	dependency	cachyos-extra-znver4	Classes for displaying the contents of SVG files
@@ -620,7 +626,7 @@ slang	2.3.3-4.1	dependency	cachyos-extra-znver4	S-Lang is a powerful interpreted
 snap-pac	3.0.1-3	explicit	extra	Pacman hooks that use snapper to create pre/post btrfs snapshots like openSUSE's YaST
 snapper	0.13.2-2.1	explicit	cachyos-extra-znver4	A tool for managing BTRFS and LVM snapshots
 snappy	1.3.1-1.1	dependency	cachyos-extra-znver4	A fast compressor/decompressor library
-sndio	1.10.0-1.1	dependency	cachyos-extra-znver4	A small audio and MIDI framework
+sndio	1.11.0-1.1	dependency	cachyos-extra-znver4	A small audio and MIDI framework
 socat	1.8.1.3-2.1	explicit	cachyos-extra-znver4	Multipurpose relay
 sord	0.16.22-1.1	dependency	cachyos-extra-znver4	A lightweight C library for storing RDF data in memory
 sound-theme-freedesktop	0.8-6	dependency	extra	Freedesktop sound theme
@@ -644,7 +650,7 @@ tdb	1.4.15-2.1	dependency	cachyos-extra-znver4	Trivial Database similar to GDBM 
 texinfo	7.3-3.1	dependency	cachyos-core-znver4	GNU documentation system for on-line information and printed output
 tinysparql	3.12.0-1	dependency	extra	Low-footprint RDF triple store with SPARQL 1.1 interface
 tomlplusplus	3.4.0-3.1	dependency	cachyos-extra-znver4	TOML config file parser and serializer for C++17
-topgrade-bin	17.17.0-1	explicit	AUR	Upgrade all the things
+topgrade-bin	17.17.0-1	explicit	AUR/foreign	Upgrade all the things
 tpm2-tss	4.2.2s-1.1	dependency	cachyos-core-znver4	Implementation of the TCG Trusted Platform Module 2.0 Software Stack (TSS2)
 tslib	1.24-1.2	dependency	cachyos-extra-znver4	Touchscreen Access Library
 ttf-jetbrains-mono-nerd	3.5.1-2	explicit	extra	Patched font JetBrains Mono from nerd fonts library
@@ -661,9 +667,9 @@ vid.stab	1.1.2-1.1	dependency	cachyos-extra-znver4	Video stabilization library
 vmaf	3.2.1-1.1	dependency	cachyos-extra-znver4	Perceptual video quality assessment algorithm based on multi-method fusion
 volume_key	0.3.12-12.1	dependency	cachyos-extra-znver4	A library for manipulating storage volume encryption keys and storing them separately from volumes to handle forgotten passphrases
 vulkan-icd-loader	1.4.363.0-1.1	explicit	cachyos-extra-znver4	Vulkan Installable Client Driver (ICD) Loader
-vulkan-mesa-implicit-layers	3:26.3.1-1	dependency	cachyos-znver4	Mesa's implicit Vulkan layers
-vulkan-mesa-layers	3:26.3.1-1	explicit	cachyos-znver4	Mesa's explicit Vulkan layers
-vulkan-radeon	3:26.3.1-1	explicit	cachyos-znver4	Open-source Vulkan driver for AMD GPUs
+vulkan-mesa-implicit-layers	3:26.3.1-5	dependency	cachyos-znver4	Mesa's implicit Vulkan layers
+vulkan-mesa-layers	3:26.3.1-5	explicit	cachyos-znver4	Mesa's explicit Vulkan layers
+vulkan-radeon	3:26.3.1-5	explicit	cachyos-znver4	Open-source Vulkan driver for AMD GPUs
 vulkan-tools	1.4.363.0-1.1	explicit	cachyos-extra-znver4	Vulkan tools and utilities
 wayland	1.26.0-1.1	dependency	cachyos-extra-znver4	A computer display server protocol
 wayland-protocols	1.50-1	dependency	extra	Specifications of extended Wayland protocols
