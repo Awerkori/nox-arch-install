@@ -1,0 +1,105 @@
+=== VERIFY_DEV1_V102 PHASE=boot2 UTC=2026-11-21T22:55:00Z ===
+USER=noxdev UID=1000
+--- SYSTEM_FAILED ---
+SYS_FAILED_COUNT=0
+--- USER_FAILED ---
+USR_FAILED_COUNT=0
+--- DISCORD_GAME_PRESENCE_PKG ---
+discord-game-presence 0.2-1
+Name            : discord-game-presence
+Version         : 0.2-1
+Description     : Show running games in a sandboxed Discord as Rich Presence
+URL             : https://git.shouldnt.work/fuxino/discord-game-presence
+Licenses        : GPL-3.0-or-later
+Depends On      : python
+--- FOREIGN_AUR_PKGS ---
+discord-game-presence 0.2-1
+luciole-git 0.1.0.r411.gbae75c541-1
+topgrade-bin 17.17.0-1
+--- FORBIDDEN_ABSENT ---
+FORBIDDEN_ABSENT=steam
+FORBIDDEN_ABSENT=discord
+--- SYSTEMD_UNIT_FILES_AND_SYMLINKS ---
+-rw-r--r-- 1 root root 199 Nov 21 19:48 /usr/lib/systemd/user/discord-game-presence.service
+total 4
+drwxr-xr-x 1 noxdev noxdev 58 Nov 21 19:48 .
+drwxr-xr-x 1 noxdev noxdev 40 Nov 21 19:48 ..
+lrwxrwxrwx 1 noxdev noxdev 51 Nov 21 19:48 discord-game-presence.service -> /usr/lib/systemd/user/discord-game-presence.service
+total 4
+drwxr-xr-x 1 root root 58 Nov 21 19:48 .
+drwxr-xr-x 1 root root 40 Nov 21 19:48 ..
+lrwxrwxrwx 1 root root 51 Nov 21 19:48 discord-game-presence.service -> /usr/lib/systemd/user/discord-game-presence.service
+GLOBAL_SYMLINK=ABSENT_OK
+IS_ENABLED=enabled
+IS_ACTIVE=active
+--- USER_STATUS ---
+● discord-game-presence.service - Show running games in Discord as Rich Presence
+     Loaded: loaded (/usr/lib/systemd/user/discord-game-presence.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2026-11-21 19:54:24 -03; 36s ago
+ Invocation: 00370983090043c9b4c6a7693093f4b2
+   Main PID: 752 (python3)
+      Tasks: 1 (limit: 11813)
+     Memory: 109.6M (peak: 113.4M)
+        CPU: 317ms
+     CGroup: /user.slice/user-1000.slice/user@1000.service/app.slice/discord-game-presence.service
+             └─752 python3 /usr/bin/discord-game-presence
+
+Nov 21 19:54:24 Nox-Device-PC systemd[736]: Started Show running games in Discord as Rich Presence.
+Nov 21 19:54:24 Nox-Device-PC discord-game-presence[752]: INFO: Loaded 25388 games
+--- USER_JOURNAL ---
+Nov 21 19:52:42 Nox-Device-PC systemd[1166]: Started Show running games in Discord as Rich Presence.
+Nov 21 19:52:44 Nox-Device-PC discord-game-presence[1181]: INFO: Downloaded the game list
+Nov 21 19:52:44 Nox-Device-PC discord-game-presence[1181]: INFO: Loaded 25388 games
+Nov 21 19:53:42 Nox-Device-PC systemd[1166]: Stopping Show running games in Discord as Rich Presence...
+Nov 21 19:53:42 Nox-Device-PC systemd[1166]: Stopped Show running games in Discord as Rich Presence.
+Nov 21 19:53:42 Nox-Device-PC systemd[1166]: discord-game-presence.service: Consumed 554ms CPU time over 59.151s wall clock time, 119.6M memory peak.
+-- Boot 3919852b210e41caa48ecd8117231965 --
+Nov 21 19:54:24 Nox-Device-PC systemd[736]: Started Show running games in Discord as Rich Presence.
+Nov 21 19:54:24 Nox-Device-PC discord-game-presence[752]: INFO: Loaded 25388 games
+--- CLI_VERSION_AND_SCAN ---
+discord-game-presence 0.2
+--- NO_DISCORD_DESKTOP_ENTRY ---
+0
+--- ENABLED_USER_UNITS ---
+discord-game-presence.service enabled enabled
+nox-fuxi-h3.path              enabled enabled
+nox-session-setup.service     enabled enabled
+p11-kit-server.socket         enabled enabled
+pipewire-pulse.socket         enabled enabled
+pipewire.socket               enabled enabled
+wireplumber.service           enabled enabled
+xdg-user-dirs.service         enabled enabled
+--- BOOT_FIRST_BOOT_AND_LIMINE ---
+FIRST_BOOT_DONE=2026-11-21T19:52:08-03:00
+[sudo] password for noxdev: [PASS] Stage 1 (Key Preparation): sbctl per-install private keys present
+[PASS] Stage 3 (Transaction State): no dirty Limine transaction marker
+[PASS] Stage 2 (Binary Signature): ✓ /boot/EFI/limine/limine_x64.efi is signed
+[PASS] Stage 2 (Binary Signature): ✓ /boot/EFI/BOOT/BOOTX64.EFI is signed
+[PASS] Stage 2 (Kernel Signature): ✓ /boot/96dbc1cacc8d4eaea5b172bbd5d553a1/linux-cachyos/vmlinuz is signed
+[PASS] Stage 3 (Limine Policy): /etc/default/limine enables verification + config enrollment
+[PASS] Stage 3 (Config Syntax): /boot/limine.conf all kernel/initramfs paths carry BLAKE2 checksums
+[PASS] Stage 3 (Asset Integrity): all boot():/ files referenced in /boot/limine.conf match their BLAKE2B hashes on disk
+[PASS] Stage 3 (Config Enrollment): /boot/limine.conf BLAKE2B (a83c394ab2554e78...) enrolled in /boot/EFI/limine/limine_x64.efi
+[PASS] Stage 3 (Config Enrollment): /boot/limine.conf BLAKE2B (a83c394ab2554e78...) enrolled in /boot/EFI/BOOT/BOOTX64.EFI
+[INFO] Stage 4 (Firmware Key Enrollment): UEFI is in Setup Mode (keys prepared on disk, NOT yet enrolled in UEFI NVRAM)
+[INFO] Stage 5 (UEFI Enforcement): UEFI Secure Boot is Disabled in firmware (offline signing & BLAKE2B verified; NOT actively enforced)
+[NOX SECUREBOOT] OK: chaves verificadas, Limine/kernel assinados, hash BLAKE2B de limine.conf inscrito e estado do firmware valido.
+LIMINE_VERIFY=PASS
+[PASS] Stage 1 (Key Preparation): sbctl per-install private keys present
+[PASS] Stage 3 (Transaction State): no dirty Limine transaction marker
+[PASS] Stage 2 (Binary Signature): ✓ /boot/EFI/limine/limine_x64.efi is signed
+[PASS] Stage 2 (Binary Signature): ✓ /boot/EFI/BOOT/BOOTX64.EFI is signed
+[PASS] Stage 2 (Kernel Signature): ✓ /boot/96dbc1cacc8d4eaea5b172bbd5d553a1/linux-cachyos/vmlinuz is signed
+[PASS] Stage 3 (Limine Policy): /etc/default/limine enables verification + config enrollment
+[PASS] Stage 3 (Config Syntax): /boot/limine.conf all kernel/initramfs paths carry BLAKE2 checksums
+[PASS] Stage 3 (Asset Integrity): all boot():/ files referenced in /boot/limine.conf match their BLAKE2B hashes on disk
+[PASS] Stage 3 (Config Enrollment): /boot/limine.conf BLAKE2B (a83c394ab2554e78...) enrolled in /boot/EFI/limine/limine_x64.efi
+[PASS] Stage 3 (Config Enrollment): /boot/limine.conf BLAKE2B (a83c394ab2554e78...) enrolled in /boot/EFI/BOOT/BOOTX64.EFI
+[INFO] Stage 4 (Firmware Key Enrollment): UEFI is in Setup Mode (keys prepared on disk, NOT yet enrolled in UEFI NVRAM)
+[INFO] Stage 5 (UEFI Enforcement): UEFI Secure Boot is Disabled in firmware (offline signing & BLAKE2B verified; NOT actively enforced)
+[NOX SECUREBOOT] OK: chaves verificadas, Limine/kernel assinados, hash BLAKE2B de limine.conf inscrito e estado do firmware valido.
+SB_VERIFY_RC=0
+--- PACKAGE_COUNT ---
+717
+OK
+__NOX_EXIT=0

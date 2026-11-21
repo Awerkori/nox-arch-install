@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Safe unprivileged AUR build & install helpers (never runs makepkg as root).
 
-NOX_AUR_USER="noxbuild"
-NOX_AUR_HOME="/var/tmp/noxbuild-home"
+NOX_AUR_USER="${NOX_AUR_USER:-noxbuild}"
+NOX_AUR_HOME="${NOX_AUR_HOME:-/var/tmp/noxbuild-home}"
+_NOX_AUR_LIB_PATH="$(readlink -f "${BASH_SOURCE[0]}")"
+_NOX_COMMON_LIB_PATH="$(dirname "$_NOX_AUR_LIB_PATH")/common.sh"
 
 nox_aur_setup_user() {
   if ! id -u "$NOX_AUR_USER" >/dev/null 2>&1; then
@@ -14,10 +16,37 @@ nox_aur_setup_user() {
 }
 
 nox_aur_cleanup_user() {
+  if [[ -d "${NOX_AUR_HOME}/.gnupg" ]]; then
+    gpgconf --homedir "${NOX_AUR_HOME}/.gnupg" --kill all >/dev/null 2>&1 || true
+  fi
   if id -u "$NOX_AUR_USER" >/dev/null 2>&1; then
     userdel -r "$NOX_AUR_USER" >/dev/null 2>&1 || userdel "$NOX_AUR_USER" >/dev/null 2>&1 || true
   fi
   rm -rf "$NOX_AUR_HOME"
+}
+
+nox_aur_import_pgp_keys() {
+  local gnupghome="$1"
+  shift
+  [[ $# -gt 0 ]] || return 0
+  mkdir -p "$gnupghome"
+  chmod 700 "$gnupghome"
+  local key ks imported
+  for key in "$@"; do
+    [[ -n "$key" ]] || continue
+    if GNUPGHOME="$gnupghome" gpg --list-keys "$key" >/dev/null 2>&1; then
+      continue
+    fi
+    imported=false
+    for ks in "hkps://keyserver.ubuntu.com" "hkps://keys.openpgp.org"; do
+      if GNUPGHOME="$gnupghome" gpg --batch --keyserver-options timeout=15 --keyserver "$ks" --recv-keys "$key" >/dev/null 2>&1 &&
+        GNUPGHOME="$gnupghome" gpg --list-keys "$key" >/dev/null 2>&1; then
+        imported=true
+        break
+      fi
+    done
+    $imported || nox_die "Falha ao importar chave PGP '${key}' declarada em validpgpkeys."
+  done
 }
 
 nox_aur_inspect_pkgbuild() {
@@ -80,19 +109,42 @@ EOF
   local pkgbuild="${workdir}/src/PKGBUILD"
   nox_aur_inspect_pkgbuild "$pkgbuild"
 
-  # Resolve official repo dependencies as root first (never NOPASSWD sudo from makepkg)
+  # Resolve official repo dependencies (depends, makedepends, checkdepends) without root
   local deps_raw
   deps_raw="$(su -s /usr/bin/bash "$NOX_AUR_USER" -c "
     cd '${workdir}/src'
     python3 - <<'PY'
 import subprocess, re
-out = subprocess.check_output(['bash', '-c', 'source PKGBUILD; printf \"%s\\n\" \"\${depends[@]}\" \"\${makedepends[@]}\"'], text=True)
+out = subprocess.check_output(['bash', '-c', 'source PKGBUILD; printf \"%s\\n\" \"\${depends[@]}\" \"\${makedepends[@]}\" \"\${checkdepends[@]}\"'], text=True)
 for line in out.splitlines():
     pkg = re.split(r'[<>=:]', line.strip())[0]
     if pkg:
         print(pkg)
 PY
   ")"
+
+  # Extract validpgpkeys cleanly without root and import into isolated NOX_AUR_HOME/.gnupg
+  local pgp_keys=() pgp_key
+  while IFS= read -r pgp_key; do
+    [[ -n "$pgp_key" ]] && pgp_keys+=("$pgp_key")
+  done < <(su -s /usr/bin/bash "$NOX_AUR_USER" -c "
+    cd '${workdir}/src'
+    bash -c 'source PKGBUILD; printf \"%s\\n\" \"\${validpgpkeys[@]}\"'
+  ")
+
+  if ((${#pgp_keys[@]} > 0)); then
+    local quoted_pgp_keys
+    printf -v quoted_pgp_keys '%q ' "${pgp_keys[@]}"
+    nox_info "Importando chaves PGP declaradas para '$pkgname' em keyring isolado..."
+    su -s /usr/bin/bash "$NOX_AUR_USER" -c "
+      set -euo pipefail
+      export HOME='${NOX_AUR_HOME}'
+      export GNUPGHOME='${NOX_AUR_HOME}/.gnupg'
+      source '${_NOX_COMMON_LIB_PATH}'
+      source '${_NOX_AUR_LIB_PATH}'
+      nox_aur_import_pgp_keys '${NOX_AUR_HOME}/.gnupg' ${quoted_pgp_keys}
+    "
+  fi
 
   local repo_deps=()
   local aur_deps=()
@@ -123,6 +175,7 @@ PY
     if su -s /usr/bin/bash "$NOX_AUR_USER" -c "
       set -euo pipefail
       export HOME='${NOX_AUR_HOME}'
+      export GNUPGHOME='${NOX_AUR_HOME}/.gnupg'
       export GIT_CONFIG_GLOBAL='${NOX_AUR_HOME}/.gitconfig'
       cd '${workdir}/src'
       makepkg --noconfirm --nodeps

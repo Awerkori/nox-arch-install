@@ -83,3 +83,7 @@ Os itens abaixo dependem de periféricos e GPU físicos (Tipo C) e não podem se
     - Sem `Steam`/`Heroic`/`Lutris`/`Bottles` instalados, o `ProtonPlus` não possui diretório-alvo ativo para baixar `GE-Proton` ou `DWProton` durante a instalação offline. Depois de instalar seu launcher de jogos:
       1. Abra o **ProtonPlus** pelo launcher do Noctalia (visível na listagem principal) ou execute `protonplus install steam ge-proton` e `protonplus install steam dwproton`.
       2. Execute `topgrade` como usuário normal no Kitty para validar atualização conjunta (`paru` + `protonplus update all`) e criação/consolidação automática de `Ponto de Segurança` e `Estado Atualizado`.
+
+11. **Discord Game Presence após instalar Discord e um jogo (`PENDENTE-HARDWARE`):**
+    - O daemon `discord-game-presence.service` já inicia ativo por padrão no login gráfico (`systemctl --user is-active discord-game-presence.service`).
+    - Após instalar o cliente **Discord** e executar um jogo em execução real com áudio/GPU físicos, valide que `discord-game-presence --scan` detecta o processo do jogo e exibe o Rich Presence no perfil do Discord sem configuração manual.

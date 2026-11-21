@@ -5,7 +5,7 @@ set -Eeuo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 DIST_DIR="${REPO_ROOT}/dist"
 
-VERSION="v1.0.1"
+VERSION="v1.0.2"
 BASE_URL=""
 VERIFY_ONLY=false
 PIN_BOOTSTRAP_COMMIT=""
@@ -134,7 +134,7 @@ resolve_commit_for_path() {
 if [[ -n "$PIN_BOOTSTRAP_COMMIT" ]]; then
   PAYLOAD_SHA256="$(build_deterministic_payload "$TAR_PATH")"
   printf '%s  %s\n' "$PAYLOAD_SHA256" "$TAR_NAME" >"${TAR_PATH}.sha256"
-  PAYLOAD_URL="${BASE_URL:-https://github.com/Awerkori/arch-install/releases/download/${VERSION}}/${TAR_NAME}"
+  PAYLOAD_URL="${BASE_URL:-https://github.com/Awerkori/nox-arch-install/releases/download/${VERSION}}/${TAR_NAME}"
   git -C "$REPO_ROOT" rev-parse --verify "${PIN_BOOTSTRAP_COMMIT}^{commit}" >/dev/null 2>&1 || {
     echo "ERRO: commit de configuracao invalido: $PIN_BOOTSTRAP_COMMIT" >&2
     exit 1
@@ -309,7 +309,7 @@ SHA256="$(build_deterministic_payload "$TAR_PATH")"
 printf '%s  %s\n' "$SHA256" "$TAR_NAME" >"${TAR_PATH}.sha256"
 
 if [[ -z "$BASE_URL" ]]; then
-  BASE_URL="https://github.com/Awerkori/arch-install/releases/download/${VERSION}"
+  BASE_URL="https://github.com/Awerkori/nox-arch-install/releases/download/${VERSION}"
 fi
 PAYLOAD_URL="${BASE_URL}/${TAR_NAME}"
 
@@ -382,7 +382,7 @@ import json, sys
     sha_file_sha,
 ) = sys.argv[1:]
 
-raw_base = "https://raw.githubusercontent.com/Awerkori/arch-install"
+raw_base = "https://raw.githubusercontent.com/Awerkori/nox-arch-install"
 manifest = {
     "schema_version": 2,
     "version": ver,

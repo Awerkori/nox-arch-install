@@ -63,6 +63,7 @@ jobs:
           done
           ./scripts/build-release.sh --verify-only
           (cd docs/evidence/v1.0.1 && sha256sum -c MANIFEST.sha256)
+          (cd docs/evidence/v1.0.2 && sha256sum -c MANIFEST.sha256)
 
       - name: Run unit, contract, security, and documentation tests
         run: |

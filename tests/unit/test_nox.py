@@ -1057,7 +1057,7 @@ class TestTrustChainHardening(unittest.TestCase):
             env_tamper = os.environ.copy()
             env_tamper["PATH"] = f"{mock_bin}:{env_tamper.get('PATH', '')}"
             env_tamper["NOX_ALLOW_CUSTOM_BOOTSTRAP"] = "1"
-            env_tamper["NOX_BOOTSTRAP_URL"] = "https://raw.githubusercontent.com/Awerkori/arch-install/0000000/bootstrap/nox-install.py"
+            env_tamper["NOX_BOOTSTRAP_URL"] = "https://raw.githubusercontent.com/Awerkori/nox-arch-install/0000000/bootstrap/nox-install.py"
             env_tamper["NOX_BOOTSTRAP_SHA256"] = wrong_sha
             res_tamper = subprocess.run(
                 ["sh", str(REPO / "i")],
@@ -1120,7 +1120,7 @@ class TestTrustChainHardening(unittest.TestCase):
             # Mutable branch URL rejected without explicit expected_sha256
             with self.assertRaises(ValueError) as ctx4:
                 mod.load_base_config(
-                    "https://raw.githubusercontent.com/Awerkori/arch-install/main/user_configuration.json",
+                    "https://raw.githubusercontent.com/Awerkori/nox-arch-install/main/user_configuration.json",
                     allow_insecure_http=False,
                     expected_sha256=None,
                 )
@@ -1158,7 +1158,7 @@ class TestTrustChainHardening(unittest.TestCase):
         try:
             # 1. SafeHTTPSRedirectHandler refuses redirect to http:// when allow_insecure_http=False
             handler = mod.SafeHTTPSRedirectHandler(allow_insecure_http=False)
-            req = mod.urllib.request.Request("https://github.com/Awerkori/arch-install/raw/v1.0.1/user_configuration.json")
+            req = mod.urllib.request.Request("https://github.com/Awerkori/nox-arch-install/raw/v1.0.2/user_configuration.json")
             with self.assertRaises(ValueError) as r_ctx:
                 handler.redirect_request(req, None, 302, "Found", {}, "http://evil.example.com/cfg.json")
             self.assertIn("downgrade HTTPS->HTTP", str(r_ctx.exception))
@@ -1188,7 +1188,7 @@ class TestTrustChainHardening(unittest.TestCase):
         wrong_ver_cfg = json.loads(json.dumps(base_cfg))
         mod.override_payload_cmd(
             wrong_ver_cfg,
-            "https://github.com/Awerkori/arch-install/releases/download/v0.9.0/nox-archinstall-payload-v0.9.0.tar.gz",
+            "https://github.com/Awerkori/nox-arch-install/releases/download/v0.9.0/nox-archinstall-payload-v0.9.0.tar.gz",
             "b" * 64,
         )
         with self.assertRaises(ValueError) as v_ctx:
@@ -1199,7 +1199,7 @@ class TestTrustChainHardening(unittest.TestCase):
         rc_cfg = json.loads(json.dumps(base_cfg))
         mod.override_payload_cmd(
             rc_cfg,
-            "https://github.com/Awerkori/arch-install/releases/download/v1.0.0-rc10/nox-archinstall-payload-v1.0.0-rc10.tar.gz",
+            "https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.0-rc10/nox-archinstall-payload-v1.0.0-rc10.tar.gz",
             "c" * 64,
         )
         with self.assertRaises(ValueError) as rc_ctx:
@@ -2196,11 +2196,13 @@ class TestDocumentationAndManifestIntegrity(unittest.TestCase):
         boot_text = (REPO / "bootstrap/nox-install.py").read_text(encoding="utf-8")
         self.assertIn(f'OFFICIAL_CONFIG_SHA256 = "{cfg_sha}"', boot_text)
         self.assertNotIn("raw.githubusercontent.com/Awerkori/arch-install/main/", boot_text)
+        self.assertNotIn("raw.githubusercontent.com/Awerkori/nox-arch-install/main/", boot_text)
 
         for doc_rel in ("README.md", "docs/INSTALLATION.md"):
             doc_text = (REPO / doc_rel).read_text(encoding="utf-8")
             self.assertNotIn("/raw/main/i", doc_text)
             self.assertNotIn("raw.githubusercontent.com/Awerkori/arch-install/main/", doc_text)
+            self.assertNotIn("raw.githubusercontent.com/Awerkori/nox-arch-install/main/", doc_text)
             self.assertIn("sha256sum -c -", doc_text)
 
         audit_text = (REPO / "docs/FINAL-AUDIT-REPORT.md").read_text(encoding="utf-8")
@@ -2302,10 +2304,10 @@ class TestDocumentationAndManifestIntegrity(unittest.TestCase):
             cfg_path = Path(td) / "user_configuration.json"
             cfg_path.write_text((REPO / "user_configuration.json").read_text(encoding="utf-8"), encoding="utf-8")
             cfg_sha = hashlib.sha256(cfg_path.read_bytes()).hexdigest()
-            payload_tar = REPO / "dist/nox-archinstall-payload-v1.0.1.tar.gz"
-            if not payload_tar.is_file():
-                subprocess.run(["bash", str(REPO / "scripts/build-release.sh")], cwd=REPO, check=True)
             manifest = json.loads((REPO / "manifests/release.json").read_text(encoding="utf-8"))
+            payload_tar = REPO / f"dist/nox-archinstall-payload-{manifest['version']}.tar.gz"
+            if not payload_tar.is_file():
+                subprocess.run(["bash", str(REPO / "scripts/build-release.sh"), "--skip-git-match"], cwd=REPO, check=True)
             payload_sha = manifest["payload_sha256"]
 
             fake_disk = {
@@ -2770,6 +2772,11 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         "user_configuration.json": "6754aefcdfb659e1abdfb5036c158a609d1672f945186a1e692edeab2e104e4c",
         "payload": "08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9",
     }
+    V101_FROZEN = {
+        "nox-install.py": "fa6c2a3b1ee86cd60976857555326bf6a63c341914e9c061f557a62a74e03b47",
+        "user_configuration.json": "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867",
+        "payload": "52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2",
+    }
 
     def test_relative_markdown_links_and_images_resolve(self) -> None:
         import re
@@ -2843,50 +2850,55 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         comp_doc = (REPO / "docs/INSTALLED-COMPONENTS.md").read_text(encoding="utf-8")
         rel_manifest = json.loads((REPO / "manifests/release.json").read_text(encoding="utf-8"))
 
-        # README must expose only ONE bash install block, targeting published v1.0.1 with immutable assets, mktemp+trap, and umask 022
+        # README must expose only ONE bash install block, targeting published Latest (v1.0.1 until v1.0.2 is published) on Awerkori/nox-arch-install
         bash_blocks = re.findall(r"```bash\n(.*?)```", readme, flags=re.S)
         self.assertEqual(len(bash_blocks), 1, "README.md must contain exactly ONE primary live bash install block")
         cmd = bash_blocks[0]
-        self.assertIn("https://github.com/Awerkori/arch-install/releases/download/v1.0.1/nox-install.py", cmd)
-        self.assertIn(rel_manifest["bootstrap_sha256"], cmd)
-        self.assertIn("https://github.com/Awerkori/arch-install/releases/download/v1.0.1/user_configuration.json", cmd)
-        self.assertIn(rel_manifest["config_sha256"], cmd)
+        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/nox-install.py", cmd)
+        self.assertIn(self.V101_FROZEN["nox-install.py"], cmd)
+        self.assertIn("https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.1/user_configuration.json", cmd)
+        self.assertIn(self.V101_FROZEN["user_configuration.json"], cmd)
         self.assertIn("mktemp -d", cmd)
         self.assertIn("trap ", cmd)
         self.assertIn("umask 022", cmd)
         self.assertNotIn("/tmp/nox-install.py", cmd)
         self.assertNotIn("/tmp/nox-cfg.json", cmd)
         self.assertNotIn("releases/download/v1.0.0", cmd)
+        self.assertNotIn("Awerkori/arch-install", cmd)
         self.assertNotIn("/refs/heads/main", cmd)
         self.assertNotIn("/main/", cmd)
 
         # Destructive warning before command, dynamic CI badge, and accurate interactive steps (4 numbered + final confirmation)
         self.assertLess(readme.index("AVISO DESTRUTIVO"), readme.index("```bash"))
         self.assertIn("actions/workflows/ci.yml/badge.svg", readme)
+        self.assertIn("Awerkori/nox-arch-install/actions/workflows/ci.yml", readme)
         self.assertNotIn("5 etapas", readme.lower())
         self.assertNotIn("5 confirmações", readme.lower())
         self.assertNotIn("5 etapas", install_doc.lower())
         self.assertNotIn("rollback automático", readme.lower())
         self.assertIn("mktemp -d", install_doc)
 
-        # Must advertise published v1.0.1 as current while preserving v1.0.0 history
+        # Must advertise published v1.0.1 as Latest while preserving v1.0.0 history and documenting v1.0.2
         self.assertIn("v1.0.1", readme)
         self.assertIn("v1.0.0", readme)
-        self.assertNotIn("não publicada", readme.lower())
-        self.assertNotIn("não foi publicada", install_doc.lower())
+        self.assertIn("v1.0.2", readme)
+        self.assertIn("discord-game-presence", readme)
+        self.assertNotIn("Awerkori/arch-install", install_doc)
+        self.assertNotIn("Awerkori/arch-install", comp_doc)
 
-        # INSTALLATION.md must carry matching v1.0.1 primary hashes & URLs plus historical v1.0.0 reference
-        self.assertIn(rel_manifest["bootstrap_sha256"], install_doc)
-        self.assertIn(rel_manifest["config_sha256"], install_doc)
-        self.assertIn(rel_manifest["payload_sha256"], install_doc)
+        # INSTALLATION.md must carry v1.0.1 active hashes + v1.0.0 frozen reference
+        self.assertIn(self.V101_FROZEN["nox-install.py"], install_doc)
+        self.assertIn(self.V101_FROZEN["user_configuration.json"], install_doc)
+        self.assertIn(self.V101_FROZEN["payload"], install_doc)
         self.assertIn(self.V100_FROZEN["nox-install.py"], install_doc)
         self.assertIn(self.V100_FROZEN["user_configuration.json"], install_doc)
         self.assertIn(self.V100_FROZEN["payload"], install_doc)
         self.assertNotIn("32c074ca3819d261a774b92ee4c7359411b963d5", install_doc)
         self.assertNotIn("daeea6fb99a7c76b071036c97d041e95783b54c5f46bfa2360ac4c1c173688e0", install_doc)
         self.assertNotIn("raw.githubusercontent.com/Awerkori/arch-install/main/", install_doc)
+        self.assertNotIn("raw.githubusercontent.com/Awerkori/nox-arch-install/main/", install_doc)
 
-        # FINAL-AUDIT-REPORT.md and INSTALLED-COMPONENTS.md must stay synchronized with current manifests/release.json
+        # FINAL-AUDIT-REPORT.md and INSTALLED-COMPONENTS.md must stay synchronized with current manifests/release.json and preserve v1.0.0/v1.0.1
         self.assertIn(rel_manifest["payload_sha256"], audit_doc)
         self.assertIn(rel_manifest["config_commit"], audit_doc)
         self.assertIn(rel_manifest["bootstrap_commit"], audit_doc)
@@ -2895,7 +2907,8 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         self.assertIn(rel_manifest["bootstrap_sha256"], audit_doc)
         self.assertIn(rel_manifest["config_sha256"], audit_doc)
         self.assertIn(self.V100_FROZEN["payload"], comp_doc)
-        self.assertIn(rel_manifest["payload_sha256"], comp_doc)
+        self.assertIn(self.V101_FROZEN["payload"], comp_doc)
+        self.assertIn("discord-game-presence", comp_doc)
 
     def test_docs_and_evidence_have_no_secrets_private_paths_or_unverified_user_anecdotes(self) -> None:
         import re
@@ -2908,6 +2921,9 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
             *sorted((REPO / "docs").glob("*.md")),
             *sorted((REPO / "docs/evidence/v1.0.1/logs").glob("*")),
         ]
+        ev102_logs = REPO / "docs/evidence/v1.0.2/logs"
+        if ev102_logs.is_dir():
+            paths_to_check.extend(sorted(ev102_logs.glob("*")))
         for p in paths_to_check:
             txt = p.read_text(encoding="utf-8", errors="replace")
             self.assertIsNone(secret_re.search(txt), f"Sensitive or private string found in {p.relative_to(REPO)}")
@@ -2917,6 +2933,170 @@ class TestDocumentationAndPublicationContracts(unittest.TestCase):
         self.assertNotIn("--custom-only", msi_doc)
         self.assertIn("--no-microsoft", msi_doc)
         self.assertIn("Cenários técnicos documentados", msi_doc)
+
+
+class TestAurAndDiscordGamePresenceContracts(unittest.TestCase):
+    def test_aur_helper_parses_checkdepends_and_imports_validpgpkeys_fail_closed(self) -> None:
+        aur_sh = (REPO / "scripts/lib/aur.sh").read_text(encoding="utf-8")
+        self.assertIn("${checkdepends[@]}", aur_sh)
+        self.assertIn("${validpgpkeys[@]}", aur_sh)
+        self.assertNotIn("--nocheck", aur_sh)
+        self.assertIn("--skipchecksums|--skippgpcheck", aur_sh)
+
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            pkgdir = root / "pkg"
+            pkgdir.mkdir()
+            (pkgdir / "PKGBUILD").write_text(
+                "pkgname=discord-game-presence\n"
+                "pkgver=0.2\n"
+                "pkgrel=1\n"
+                "depends=('python')\n"
+                "makedepends=('git>=2.40')\n"
+                "checkdepends=('python-pytest')\n"
+                "validpgpkeys=('7E12BC1FF3B6EDB2CD8053EB981A2B2A3BBF5514')\n",
+                encoding="utf-8",
+            )
+            deps_out = subprocess.run(
+                [
+                    "python3",
+                    "-c",
+                    "import subprocess, re\n"
+                    "out = subprocess.check_output(['bash', '-c', 'source PKGBUILD; printf \"%s\\n\" \"${depends[@]}\" \"${makedepends[@]}\" \"${checkdepends[@]}\"'], text=True)\n"
+                    "print(','.join(re.split(r'[<>=:]', l.strip())[0] for l in out.splitlines() if l.strip()))\n",
+                ],
+                cwd=pkgdir,
+                capture_output=True,
+                text=True,
+                check=True,
+            )
+            self.assertEqual(deps_out.stdout.strip(), "python,git,python-pytest")
+
+            mock_bin = root / "bin"
+            mock_bin.mkdir()
+            gpg_log = root / "gpg.log"
+            mock_gpg = mock_bin / "gpg"
+            mock_gpg.write_text(
+                "#!/usr/bin/env bash\n"
+                "set -euo pipefail\n"
+                f"echo \"GNUPGHOME=${{GNUPGHOME:-}} $*\" >> '{gpg_log}'\n"
+                "if [[ \"$*\" == *'--list-keys'* ]]; then\n"
+                "  [[ -f \"${GNUPGHOME}/imported\" ]] && exit 0\n"
+                "  exit 2\n"
+                "fi\n"
+                "if [[ \"$*\" == *'--recv-keys'* ]]; then\n"
+                "  if [[ \"${MOCK_GPG_FAIL:-0}\" == '1' ]]; then\n"
+                "    exit 2\n"
+                "  fi\n"
+                "  touch \"${GNUPGHOME}/imported\"\n"
+                "  exit 0\n"
+                "fi\n"
+                "exit 0\n",
+                encoding="utf-8",
+            )
+            mock_gpg.chmod(0o755)
+
+            gnupghome_ok = root / "aur-home/.gnupg"
+            env_ok = os.environ.copy()
+            env_ok["PATH"] = f"{mock_bin}:{env_ok.get('PATH', '')}"
+            res_ok = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    f"set -euo pipefail; source '{REPO}/scripts/lib/common.sh'; source '{REPO}/scripts/lib/aur.sh'; "
+                    f"nox_aur_import_pgp_keys '{gnupghome_ok}' '7E12BC1FF3B6EDB2CD8053EB981A2B2A3BBF5514'",
+                ],
+                env=env_ok,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(res_ok.returncode, 0, res_ok.stderr)
+            self.assertEqual(gnupghome_ok.stat().st_mode & 0o777, 0o700)
+            self.assertIn("--recv-keys 7E12BC1FF3B6EDB2CD8053EB981A2B2A3BBF5514", gpg_log.read_text(encoding="utf-8"))
+
+            gnupghome_fail = root / "aur-home-fail/.gnupg"
+            env_fail = env_ok.copy()
+            env_fail["MOCK_GPG_FAIL"] = "1"
+            res_fail = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    f"set -euo pipefail; source '{REPO}/scripts/lib/common.sh'; source '{REPO}/scripts/lib/aur.sh'; "
+                    f"nox_aur_import_pgp_keys '{gnupghome_fail}' '7E12BC1FF3B6EDB2CD8053EB981A2B2A3BBF5514'",
+                ],
+                env=env_fail,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(res_fail.returncode, 0)
+            self.assertIn("Falha ao importar chave PGP", res_fail.stderr)
+
+    def test_discord_game_presence_desktop_and_validation_contracts(self) -> None:
+        desktop_sh = (REPO / "scripts/50-desktop.sh").read_text(encoding="utf-8")
+        val_sh = (REPO / "scripts/80-validation.sh").read_text(encoding="utf-8")
+
+        self.assertIn('nox_aur_install_pkg "discord-game-presence"', desktop_sh)
+        self.assertIn("nox_enable_user_systemd_unit /usr/lib/systemd/user/discord-game-presence.service", desktop_sh)
+        self.assertIn(" steam discord ", desktop_sh)
+        self.assertNotIn("systemctl --global", desktop_sh)
+        self.assertNotIn("enable-linger", desktop_sh)
+        self.assertNotIn("systemctl --user", desktop_sh)
+
+        self.assertIn("pacman -Q discord-game-presence", val_sh)
+        self.assertIn("/usr/bin/discord-game-presence --version", val_sh)
+        self.assertIn("/etc/skel/.config/systemd/user/default.target.wants/discord-game-presence.service", val_sh)
+        self.assertIn("test ! -e /etc/systemd/user/default.target.wants/discord-game-presence.service", val_sh)
+        self.assertIn(" steam discord ", val_sh)
+
+    def test_nox_enable_user_systemd_unit_per_user_isolation_and_idempotency(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            unit_src = root / "discord-game-presence.service"
+            unit_src.write_text(
+                "[Unit]\nDescription=Discord Game Presence\n\n[Service]\nExecStart=/usr/bin/discord-game-presence\n\n[Install]\nWantedBy=default.target\n",
+                encoding="utf-8",
+            )
+            skel = root / "skel"
+            alice_home = root / "home/alice"
+            bob_home = root / "home/bob"
+            skel.mkdir()
+            alice_home.mkdir(parents=True)
+            bob_home.mkdir(parents=True)
+
+            script = (
+                "set -euo pipefail\n"
+                f"source '{REPO}/scripts/lib/common.sh'\n"
+                "nox_list_human_users() {\n"
+                f"  printf 'alice:%s:%s:%s:/usr/bin/bash\\n' \"$(id -u)\" \"$(id -g)\" '{alice_home}'\n"
+                f"  printf 'bob:%s:%s:%s:/usr/bin/bash\\n' \"$(id -u)\" \"$(id -g)\" '{bob_home}'\n"
+                "}\n"
+                f"nox_enable_user_systemd_unit '{unit_src}' '{skel}'\n"
+                f"nox_enable_user_systemd_unit '{unit_src}' '{skel}'\n"
+            )
+            res = subprocess.run(["bash", "-c", script], capture_output=True, text=True, check=False)
+            self.assertEqual(res.returncode, 0, res.stderr)
+
+            for base in (skel, alice_home, bob_home):
+                link = base / ".config/systemd/user/default.target.wants/discord-game-presence.service"
+                self.assertTrue(link.is_symlink(), f"Missing symlink: {link}")
+                self.assertEqual(Path(os.readlink(link)), unit_src)
+
+            bad_unit = root / "bad.service"
+            bad_unit.write_text("[Unit]\nDescription=Bad\n[Install]\nWantedBy=../evil.target\n", encoding="utf-8")
+            bad_res = subprocess.run(
+                [
+                    "bash",
+                    "-c",
+                    f"set -euo pipefail; source '{REPO}/scripts/lib/common.sh'; nox_enable_user_systemd_unit '{bad_unit}' '{skel}'",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(bad_res.returncode, 0)
+            self.assertIn("WantedBy invalido", bad_res.stderr)
 
 
 

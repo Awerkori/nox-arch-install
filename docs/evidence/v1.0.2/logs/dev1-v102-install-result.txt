@@ -1,0 +1,129 @@
+TAG=dev1-v102
+EXIT_CODE=0
+END_UTC=2026-11-21T22:49:09Z
+BOOT_URL=http://192.168.122.1:18443/nox-install-v102.py
+CFG_URL=http://192.168.122.1:18443/user_configuration_v102.json
+PAYLOAD_URL=http://192.168.122.1:18443/nox-archinstall-payload-v1.0.2.tar.gz
+PAYLOAD_SHA256=723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774
+=== LOG TAIL ===
+(41/46) installing inotify-tools                   [----------------------]   0%
+(41/46) installing inotify-tools                   [######################] 100%
+
+
+(42/46) installing iw                              [----------------------]   0%
+(42/46) installing iw                              [######################] 100%
+
+
+(43/46) installing oniguruma                       [----------------------]   0%
+(43/46) installing oniguruma                       [######################] 100%
+
+
+(44/46) installing jq                              [----------------------]   0%
+(44/46) installing jq                              [######################] 100%
+
+
+(45/46) installing xdg-user-dirs                   [----------------------]   0%
+(45/46) installing xdg-user-dirs                   [######################] 100%
+
+
+Created symlink '/etc/systemd/user/graphical-session-pre.target.wants/xdg-user-dirs.service' -> '/usr/lib/systemd/user/xdg-user-dirs.service'.
+
+(46/46) installing xdg-utils                       [----------------------]   0%
+(46/46) installing xdg-utils                       [######################] 100%
+
+
+Optional dependencies for xdg-utils
+
+    kde-cli-tools: for KDE Plasma5 support in xdg-open
+
+    exo: for Xfce support in xdg-open
+
+    pcmanfm: for LXDE support in xdg-open
+
+    perl-file-mimeinfo: for generic support in xdg-open
+
+    perl-net-dbus: Perl extension to dbus used in xdg-screensaver
+
+    perl-x11-protocol: Perl X11 protocol used in xdg-screensaver
+
+    xorg-xset: for X11 support in xdg-screensaver
+
+    xorg-xprop: for X11 support in xdg-screensaver
+
+:: Running post-transaction hooks...
+
+(1/8) Configuring dynamic linker run-time bindings...
+
+(2/8) Creating system user accounts...
+
+Creating group 'git' with GID 967.
+
+Creating user 'git' (git daemon user) with UID 967 and GID 967.
+
+(3/8) Reloading system manager configuration...
+
+  Skipped: Running in chroot.
+
+(4/8) Reloading user manager configuration...
+
+  Skipped: Running in chroot.
+
+(5/8) Arming ConditionNeedsUpdate...
+
+(6/8) Updating linux initcpios...
+
+==> Building image from preset: /etc/mkinitcpio.d/linux-zen.preset: 'default'
+
+==> Using default configuration file: '/etc/mkinitcpio.conf'
+
+  -> -k /boot/vmlinuz-linux-zen -g /boot/initramfs-linux-zen.img
+
+==> Starting build: '7.3.5-zen1-1-zen'
+
+  -> Running build hook: [base]
+
+  -> Running build hook: [udev]
+
+  -> Running build hook: [autodetect]
+
+  -> Running build hook: [microcode]
+
+  -> Running build hook: [modconf]
+
+  -> Running build hook: [kms]
+
+  -> Running build hook: [keyboard]
+
+  -> Running build hook: [keymap]
+
+  -> Running build hook: [consolefont]
+
+  -> Running build hook: [block]
+
+  -> Running build hook: [filesystems]
+
+  -> Running build hook: [fsck]
+
+==> Generating module dependencies
+
+==> Creating zstd-compressed initcpio image: '/boot/initramfs-linux-zen.img'
+
+  -> Early uncompressed CPIO image generation successful
+
+==> Initcpio image generation successful
+
+(7/8) Checking for old perl modules...
+
+(8/8) Updating the info directory file...
+
+[?25h
+
+[37mActivating systemd-timesyncd for time synchronization using Arch Linux and ntp.org NTP servers[0m
+[37mEnabling service systemd-timesyncd[0m
+[37mExecuting custom command "bash -c 'set -Eeuo pipefail; URL="http://192.168.122.1:18443/nox-archinstall-payload-v1.0.2.tar.gz"; SHA="723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774"; TMP=$(mktemp -d); trap "rm -rf $TMP" EXIT; curl --tlsv1.2 -fsSL --retry 3 --max-time 60 "$URL" -o "$TMP/p.tar.gz"; printf "%s  %s\n" "$SHA" "$TMP/p.tar.gz" | sha256sum -c -; rm -rf /var/lib/nox-archinstall/payload; mkdir -p /var/lib/nox-archinstall/payload; tar --no-same-owner --no-same-permissions -xzf "$TMP/p.tar.gz" --strip-components=1 -C /var/lib/nox-archinstall/payload; chmod +x /var/lib/nox-archinstall/payload/install.sh; exec /var/lib/nox-archinstall/payload/install.sh --stage target-offline'" ...[0m
+[37mUpdating /mnt/etc/fstab[0m
+[37mSyncing the system...[0m
+[32mInstallation completed without any errors.
+Log files temporarily available at /var/log/archinstall.
+You may reboot when ready.
+[0m

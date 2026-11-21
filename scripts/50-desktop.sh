@@ -139,10 +139,16 @@ mpvpaper --help >/dev/null 2>&1 || nox_die "Falha funcional ao carregar mpvpaper
 mpv --version >/dev/null 2>&1 || nox_die "Falha funcional ao carregar mpv."
 ffmpeg -version >/dev/null 2>&1 || nox_die "Falha funcional ao carregar ffmpeg."
 
-# Build & install Luciole and Topgrade from AUR as unprivileged user (noxbuild)
+# Build & install Luciole, Topgrade, and Discord Game Presence from AUR as unprivileged user (noxbuild)
 nox_aur_install_pkg "luciole-git"
 nox_aur_install_pkg "topgrade-bin"
+nox_aur_install_pkg "discord-game-presence"
 nox_aur_cleanup_user
+
+# Verify discord-game-presence & enable user systemd service per human user (never --global or root/greeter)
+pacman -Qq discord-game-presence >/dev/null 2>&1 || nox_die "discord-game-presence nao foi instalado!"
+[[ -x /usr/bin/discord-game-presence ]] || nox_die "Binario /usr/bin/discord-game-presence ausente!"
+nox_enable_user_systemd_unit /usr/lib/systemd/user/discord-game-presence.service
 
 # Verify bash is login shell for all human accounts and valid in /etc/shells
 grep -qxF '/bin/bash' /etc/shells || printf '/bin/bash\n' >>/etc/shells

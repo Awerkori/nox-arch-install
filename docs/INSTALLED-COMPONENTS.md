@@ -1,30 +1,31 @@
 # Inventário Completo — Nox Archinstall (`v1.0.0` / `v1.0.1`)
 
-> Documento de referência das instalações e configurações automatizadas pelo **Nox Archinstall** na release estável **`v1.0.0`** e na revisão de hardening **`v1.0.1`**.
-> Listagem completa e exata de todos os **711 pacotes** (explícitos e dependências) disponível em [`INSTALLED-PACKAGES.tsv`](INSTALLED-PACKAGES.tsv).
+> Documento de referência das instalações e configurações automatizadas pelo **Nox Archinstall** na release estável **`v1.0.1`** e na revisão **`v1.0.2`** (`discord-game-presence`).
+> Listagem completa e exata de todos os **717 pacotes** (explícitos e dependências) medida em `dev1-v102` disponível em [`INSTALLED-PACKAGES.tsv`](INSTALLED-PACKAGES.tsv).
 
 ## Metadados da Revisão Documentada
 
-- **Repositório:** `https://github.com/Awerkori/arch-install`
-- **Release estável atual (`Latest`):** [`v1.0.1`](https://github.com/Awerkori/arch-install/releases/tag/v1.0.1) (payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`)
-- **Release anterior preservada:** [`v1.0.0`](https://github.com/Awerkori/arch-install/releases/tag/v1.0.0) (payload SHA-256 `08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9`)
-- **Base de comprovação:** Instalações limpas independentes a partir da ISO oficial `archlinux-2026.11.01-x86_64.iso` (`ACCEPT-A-CLEAN` / `ACCEPT-B-CLEAN` e par definitivo congelado `ACCEPT-A-V101-FINAL` / `ACCEPT-B-V101-FINAL`), verificadas com `diff` nulo entre ambas e contra [`INSTALLED-PACKAGES.tsv`](INSTALLED-PACKAGES.tsv).
+- **Repositório:** `https://github.com/Awerkori/nox-arch-install`
+- **Release estável atual (`Latest`):** [`v1.0.1`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.1) (payload SHA-256 `52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2`)
+- **Próxima revisão em preparação (`v1.0.2`):** [`manifests/release.json`](../manifests/release.json) / [`RELEASE-NOTES-v1.0.2.md`](RELEASE-NOTES-v1.0.2.md) (adiciona `discord-game-presence` + serviço systemd por usuário + `checkdepends`/`validpgpkeys` isolado no AUR)
+- **Release anterior preservada:** [`v1.0.0`](https://github.com/Awerkori/nox-arch-install/releases/tag/v1.0.0) (payload SHA-256 `08fbf62a2325b2a3a4b30a3d7ec4b986bc17f412970ba25f83839624444d6fd9`)
+- **Base de comprovação:** Instalações limpas independentes a partir da ISO oficial `archlinux-2026.11.01-x86_64.iso` (`ACCEPT-A-V101-FINAL` / `ACCEPT-B-V101-FINAL` para `v1.0.1`, e `dev1-v102` limpa para `v1.0.2` verificada contra [`INSTALLED-PACKAGES.tsv`](INSTALLED-PACKAGES.tsv)).
 
-### Contagem Total de Pacotes (`ACCEPT-A` e `ACCEPT-B`)
+### Contagem Total de Pacotes (`v1.0.2` Medido em `dev1-v102`)
 
 | Métrica | Quantidade | Observações |
 |---|---:|---|
-| **Total instalado** | **711** | Idêntico entre `ACCEPT-A` e `ACCEPT-B` (0 diferenças) |
-| **Instalados explicitamente (`pacman -Qqe`)** | **100** | Base `archinstall` + módulos do Nox + `topgrade-bin` + `protonplus` + `proton-cachyos-slr` + `mpvpaper` + `vulkan-tools`/`mesa-utils` |
-| **Instalados como dependências (`pacman -Qd`)** | **611** | Bibliotecas (`libadwaita`, `mpv`, `lib32-*`), toolchains e dependências transitivas |
+| **Total instalado** | **717** | `711` base `v1.0.1` + `discord-game-presence` + `python-pytest` e 4 deps Python (`iniconfig`, `packaging`, `pluggy`, `pygments`) |
+| **Instalados explicitamente (`pacman -Qqe`)** | **102** | Base `archinstall` + módulos Nox + `topgrade-bin` + `protonplus` + `proton-cachyos-slr` + `discord-game-presence` + `python-pytest` |
+| **Instalados como dependências (`pacman -Qd`)** | **615** | Bibliotecas (`libadwaita`, `mpv`, `lib32-*`), deps Python (`pytest`), toolchains e dependências transitivas |
 | **Origem `cachyos-extra-znver4`** | 329 | Otimizados Zen 4 (`x86-64-v4`) |
 | **Origem `cachyos-core-znver4`** | 119 | Núcleo otimizado Zen 4 |
+| **Origem `extra` (Arch)** | 76 | Repositório oficial Arch (inclui `python-pytest` + 4 deps Python) |
 | **Origem `multilib` (Arch 32-bit)** | 72 | Suporte 32 bits (`lib32-*`) |
-| **Origem `extra` (Arch)** | 71 | Repositório oficial Arch |
 | **Origem `cachyos-znver4`** | 48 | Pacotes específicos Zen 4 (`linux-cachyos`, `firefox-pure`, Mesa) |
 | **Origem `core` (Arch)** | 35 | Base Arch |
 | **Origem `cachyos`** | 35 | Keyring, mirrorlists, `paru`, `limine*`, `umbriel*`, `cachyos-settings`, `protonplus`, `proton-cachyos-slr`, `mpvpaper` |
-| **Origem `AUR/foreign`** | 2 | `luciole-git` e `topgrade-bin` (compilados em sandbox não-privileged `noxbuild`) |
+| **Origem `AUR/foreign`** | 3 | `luciole-git`, `topgrade-bin` e `discord-game-presence` (compilados em sandbox não-privileged `noxbuild` com `validpgpkeys` isolado) |
 
 ---
 
@@ -97,6 +98,7 @@ As entradas `.desktop` técnicas são ocultadas apenas via overlays XDG do usuá
 | Aplicativo / Ferramenta | Função | Pacote | Origem | Launcher Inicial | Pesquisa (`system-tools` / `/tools`) | Classificação |
 |---|---|---|---|---|---|---|
 | **topgrade** | Comando central unificado de atualização (`paru`, `pacman`, `protonplus update all`, `topgrade-bin`) com lock anti-concorrência (`flock`) | `topgrade-bin` (`17.17.0-1`) | AUR (`makepkg` `noxbuild`) | Sem `.desktop` | CLI (`topgrade` → `/usr/local/bin/topgrade`) | **Obrigatório** |
+| **discord-game-presence** (`v1.0.2+`) | Daemon de presença de jogos (Discord RPC sem Steam/client pré-instalados) via `discord-game-presence.service` (`WantedBy=default.target`, symlink por usuário humano) | `discord-game-presence` | AUR (`noxbuild` + PGP isolado) | Sem `.desktop` | Daemon `--user` + CLI (`discord-game-presence`) | **Obrigatório** (`v1.0.2+`) |
 | **btop** (`btop++`) | Monitor de recursos padrão no Kitty (`CPU/RAM/Swap/Disks/Net/Proc` + AMD GPU) | `btop` (`1.4.8-1.1`) + `rocm-smi-lib` (`10.1-1.1`) | `cachyos-extra-znver4` | Oculto | Pesquisável (`btop++`) e CLI (`btop`) | **Obrigatório** |
 | **fastfetch** | Informações do sistema no Kitty (logo Braille 28 cols Obsidian Purple via `nox-logo.txt`) | `fastfetch` (`2.71.0-1.1`) | `cachyos-extra-znver4` | Sem `.desktop` | CLI manual (`fastfetch`) | **Obrigatório** |
 | **Noctalia** | Painel de configurações do shell Noctalia (`noctalia msg settings-open`) | `noctalia` (`5.5.0-1.1`) | `cachyos-extra-znver4` | Oculto | Pesquisável (`Noctalia`) | **Obrigatório** |
@@ -167,9 +169,10 @@ As entradas `.desktop` técnicas são ocultadas apenas via overlays XDG do usuá
 - **Rede & Bluetooth:** `NetworkManager.service`, `NetworkManager-dispatcher.service` (`NetworkManager-wait-online.service` e `iwd.service` desabilitados), `bluetooth.service`, `cachyos-iw-set-regdomain.path`.
 - **Otimização & Manutenção:** `scx_loader.service`, `ananicy-cpp.service`, `irqbalance.service`, `limine-snapper-sync.service`, `cachyos-rate-mirrors.timer`, `fstrim.timer`, `snapper-cleanup.timer` (`snapper-timeline.timer` e `snapper-boot.timer` mascarados).
 
-### Serviços de Usuário Habilitados Globalmente (`systemctl --global`) e Autostarts
-- **User units (`umbriel-session.target.wants` / socket activation):**
+### Serviços de Usuário Habilitados e Autostarts
+- **User units (`umbriel-session.target.wants` / `default.target.wants` / socket activation):**
   - `nox-session-setup.service` → executa `/usr/local/libexec/nox/nox-session-init` (perfil de monitores `nox-display-profile`, idioma/locale, esquema escuro, XDG padrão `firefox.desktop` + `dev.noctalia.luciole.desktop`, ajuste de áudio sem HushMic).
+  - `discord-game-presence.service` (`v1.0.2+`) → habilitado exclusivamente via symlink em `~/.config/systemd/user/default.target.wants/` para usuários humanos e `/etc/skel` (sem `--global`, sem `linger`, inativo para `root`/`greeter`).
   - `nox-fuxi-h3.path` / `nox-fuxi-h3.service` → reage ao hotplug do headset Havit Fuxi H3.
   - `pipewire.socket`, `pipewire-pulse.socket`, `wireplumber.service`, `xdg-user-dirs.service`, `p11-kit-server.socket`.
 - **XDG Autostart (`/etc/xdg/autostart/`):** `at-spi-dbus-bus.desktop`, `limine-restore-notify.desktop`, `limine-snapper-notify.desktop`, `xdg-user-dirs.desktop`.
