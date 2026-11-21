@@ -2,7 +2,7 @@
   <img src="configs/icons/nox-emblem.png" alt="Nox Archinstall" width="132" />
 </p>
 
-<h1 align="center">Nox Archinstall</h1>
+<h1 align="center">Nox-Arch-Install</h1>
 
 <p align="center">
   <em>Instalação pessoal automatizada de Arch Linux · Kernel CachyOS znver4, Limine, Btrfs Snapper, Secure Boot e Umbriel / Noctalia</em>
