@@ -29,16 +29,16 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-NOX_RELEASE_VERSION = "v1.0.1"
-OFFICIAL_CONFIG_COMMIT = "83624813f3f32fd8608ee881b21b7ab6ec92cf3e"
+NOX_RELEASE_VERSION = "v1.0.2"
+OFFICIAL_CONFIG_COMMIT = "e50bab32d642dee85ede329100ba451d2f82f491"
 DEFAULT_CONFIG_URL = (
-    f"https://raw.githubusercontent.com/Awerkori/arch-install/{OFFICIAL_CONFIG_COMMIT}/user_configuration.json"
+    f"https://raw.githubusercontent.com/Awerkori/nox-arch-install/{OFFICIAL_CONFIG_COMMIT}/user_configuration.json"
 )
-OFFICIAL_CONFIG_SHA256 = "9cb32121cb9a87b54b7c07749a92d3b8cb6cffcf6e4dadc502f3fa9a3da3a867"
+OFFICIAL_CONFIG_SHA256 = "c7c27cbb719d2dce415c68b2c1926fcafd4656045cfe966ebb3331fb2ffe8775"
 OFFICIAL_PAYLOAD_URL = (
-    "https://github.com/Awerkori/arch-install/releases/download/v1.0.1/nox-archinstall-payload-v1.0.1.tar.gz"
+    "https://github.com/Awerkori/nox-arch-install/releases/download/v1.0.2/nox-archinstall-payload-v1.0.2.tar.gz"
 )
-OFFICIAL_PAYLOAD_SHA256 = "52008f9c454c8b39c91d6e51b3546f6a76546f021c3c6a0850dc7a55d5bf92b2"
+OFFICIAL_PAYLOAD_SHA256 = "723c46bb9d6ae2965988e99d25b3198340feb24bdf7a71b5f4b0c1179fe5a774"
 
 LEGACY_RC_TAG = "v1.0.0-rc10"
 LEGACY_RC_PREFIX = "v1.0.0-rc"
